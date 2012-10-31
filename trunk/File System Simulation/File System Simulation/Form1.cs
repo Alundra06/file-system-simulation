@@ -245,6 +245,11 @@ namespace File_System_Simulation
 
         }
 
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+
              
 
     
