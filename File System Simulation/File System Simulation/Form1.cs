@@ -31,7 +31,7 @@ namespace File_System_Simulation
             try
             {
                 string Path = CurrentFolder.Text;
-                string fileName = Path + "\\Persons.spr";
+                string fileName = Path + FileName.Text;
                 FileStream fstPersons = new FileStream(fileName, FileMode.Create);
                 BinaryWriter wrtPersons = new BinaryWriter(fstPersons);
                 wrtPersons.Write("James Bloch");
@@ -248,6 +248,11 @@ namespace File_System_Simulation
         private void button1_Click(object sender, EventArgs e)
         {
             Close();
+        }
+
+        private void Clickme1_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("test");
         }
 
              
