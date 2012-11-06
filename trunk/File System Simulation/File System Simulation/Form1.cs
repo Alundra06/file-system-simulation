@@ -2,6 +2,7 @@
 using System.Text;
 using System.Windows.Forms;
 using System.IO;
+using System.Drawing;
 
 namespace File_System_Simulation
 {
@@ -27,7 +28,16 @@ namespace File_System_Simulation
 
         private void CreateFiles_Click(object sender, EventArgs e)
         {
+            if (FileName.Text.Length == 0)
+            {
+                MessageBox.Show("Please insert a valid file name");
+                FileName.BackColor = Color.Red;
+            }
+            
+            else
+            {
 
+                FileName.BackColor = Color.White;
             try
             {
                 string Path = CurrentFolder.Text;
@@ -62,7 +72,7 @@ namespace File_System_Simulation
             }
             
             
-            
+            }
         }
 
         private void fillTree()
@@ -253,6 +263,21 @@ namespace File_System_Simulation
         private void Clickme1_Click(object sender, EventArgs e)
         {
             MessageBox.Show("test");
+        }
+
+        private void FileName_TextChanged(object sender, EventArgs e)
+        {
+            FileName.BackColor = Color.White;
+        }
+
+        private void button2_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label5_Click(object sender, EventArgs e)
+        {
+
         }
 
              

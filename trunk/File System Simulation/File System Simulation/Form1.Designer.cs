@@ -41,6 +41,7 @@
             this.CurrentFolder = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
             this.FileName = new System.Windows.Forms.TextBox();
+            this.button2 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -108,7 +109,7 @@
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            this.label4.Location = new System.Drawing.Point(594, 268);
+            this.label4.Location = new System.Drawing.Point(585, 301);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(108, 16);
             this.label4.TabIndex = 8;
@@ -116,8 +117,9 @@
             // 
             // BinaryContent
             // 
-            this.BinaryContent.Location = new System.Drawing.Point(473, 284);
+            this.BinaryContent.Location = new System.Drawing.Point(473, 320);
             this.BinaryContent.Name = "BinaryContent";
+            this.BinaryContent.ReadOnly = true;
             this.BinaryContent.Size = new System.Drawing.Size(341, 160);
             this.BinaryContent.TabIndex = 7;
             this.BinaryContent.Text = "";
@@ -138,11 +140,12 @@
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            this.label5.Location = new System.Drawing.Point(259, 405);
+            this.label5.Location = new System.Drawing.Point(220, 405);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(101, 16);
+            this.label5.Size = new System.Drawing.Size(141, 16);
             this.label5.TabIndex = 10;
-            this.label5.Text = "Current folder";
+            this.label5.Text = "Current file location";
+            this.label5.Click += new System.EventHandler(this.label5_Click);
             // 
             // CurrentFolder
             // 
@@ -168,12 +171,24 @@
             this.FileName.Name = "FileName";
             this.FileName.Size = new System.Drawing.Size(100, 20);
             this.FileName.TabIndex = 13;
+            this.FileName.TextChanged += new System.EventHandler(this.FileName_TextChanged);
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(588, 253);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(133, 23);
+            this.button2.TabIndex = 14;
+            this.button2.Text = "Save Updates";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click_1);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(837, 546);
+            this.Controls.Add(this.button2);
             this.Controls.Add(this.FileName);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.CurrentFolder);
@@ -210,6 +225,7 @@
         private System.Windows.Forms.TextBox CurrentFolder;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.TextBox FileName;
+        private System.Windows.Forms.Button button2;
     }
 }
 
