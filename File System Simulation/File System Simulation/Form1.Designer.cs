@@ -104,9 +104,9 @@
             this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
             this.label4.Location = new System.Drawing.Point(585, 301);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(108, 16);
+            this.label4.Size = new System.Drawing.Size(94, 16);
             this.label4.TabIndex = 8;
-            this.label4.Text = "Binary Content";
+            this.label4.Text = "Raw Content";
             // 
             // BinaryContent
             // 
@@ -185,6 +185,7 @@
             this.button4.Text = "Delete folder";
             this.button4.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // button3
             // 

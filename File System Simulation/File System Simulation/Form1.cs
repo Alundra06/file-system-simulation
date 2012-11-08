@@ -282,7 +282,52 @@ namespace File_System_Simulation
 
         private void button3_Click(object sender, EventArgs e)
         {
+            String path = CurrentFolder.Text + "/" + Foldername.Text;
+            if (Directory.Exists(path))
+            {
+                MessageBox.Show("That folder exists already");
+            }
+            else
+            {
+                // Try to create the directory.
+                DirectoryInfo di = Directory.CreateDirectory(path);
+            }
 
+            //////////////////////////////////
+            //////////////////////////////////
+            /// Refresh the Treeview://///////
+            /// /////////////////////////////
+            /////////////////////////////////
+            try
+            {
+                FileView.Nodes.Clear();
+                fillTree();
+            }
+            catch (System.Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            String path = CurrentFolder.Text;
+            Directory.Delete(path);
+
+            //////////////////////////////////
+            //////////////////////////////////
+            /// Refresh the Treeview://///////
+            /// /////////////////////////////
+            /////////////////////////////////
+            try
+            {
+                FileView.Nodes.Clear();
+                fillTree();
+            }
+            catch (System.Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
         }
 
              
