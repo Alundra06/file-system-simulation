@@ -40,6 +40,9 @@
             this.button1 = new System.Windows.Forms.Button();
             this.FileName = new System.Windows.Forms.TextBox();
             this.button2 = new System.Windows.Forms.Button();
+            this.Foldername = new System.Windows.Forms.TextBox();
+            this.button4 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
             this.DeleteFiles = new System.Windows.Forms.Button();
             this.CreateFiles = new System.Windows.Forms.Button();
             this.SuspendLayout();
@@ -149,7 +152,7 @@
             // 
             this.FileName.Location = new System.Drawing.Point(15, 137);
             this.FileName.Name = "FileName";
-            this.FileName.Size = new System.Drawing.Size(100, 20);
+            this.FileName.Size = new System.Drawing.Size(118, 20);
             this.FileName.TabIndex = 13;
             this.FileName.TextChanged += new System.EventHandler(this.FileName_TextChanged);
             // 
@@ -163,13 +166,49 @@
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click_1);
             // 
+            // Foldername
+            // 
+            this.Foldername.Location = new System.Drawing.Point(14, 265);
+            this.Foldername.Name = "Foldername";
+            this.Foldername.Size = new System.Drawing.Size(119, 20);
+            this.Foldername.TabIndex = 16;
+            // 
+            // button4
+            // 
+            this.button4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button4.Image = global::File_System_Simulation.Properties.Resources.Folder_Delete_icon;
+            this.button4.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button4.Location = new System.Drawing.Point(11, 292);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(122, 34);
+            this.button4.TabIndex = 17;
+            this.button4.Text = "Delete folder";
+            this.button4.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.button4.UseVisualStyleBackColor = true;
+            // 
+            // button3
+            // 
+            this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button3.Image = global::File_System_Simulation.Properties.Resources.folder_close_icon;
+            this.button3.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button3.Location = new System.Drawing.Point(12, 225);
+            this.button3.Name = "button3";
+            this.button3.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.button3.Size = new System.Drawing.Size(121, 34);
+            this.button3.TabIndex = 15;
+            this.button3.Text = "Create folder";
+            this.button3.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
             // DeleteFiles
             // 
+            this.DeleteFiles.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.DeleteFiles.Image = global::File_System_Simulation.Properties.Resources.Button_Delete_icon;
             this.DeleteFiles.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.DeleteFiles.Location = new System.Drawing.Point(12, 163);
             this.DeleteFiles.Name = "DeleteFiles";
-            this.DeleteFiles.Size = new System.Drawing.Size(103, 34);
+            this.DeleteFiles.Size = new System.Drawing.Size(121, 34);
             this.DeleteFiles.TabIndex = 9;
             this.DeleteFiles.Text = "Delete file";
             this.DeleteFiles.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -178,12 +217,13 @@
             // 
             // CreateFiles
             // 
+            this.CreateFiles.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CreateFiles.Image = global::File_System_Simulation.Properties.Resources.Document_icon__1_;
             this.CreateFiles.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.CreateFiles.Location = new System.Drawing.Point(14, 96);
             this.CreateFiles.Name = "CreateFiles";
             this.CreateFiles.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.CreateFiles.Size = new System.Drawing.Size(103, 34);
+            this.CreateFiles.Size = new System.Drawing.Size(119, 34);
             this.CreateFiles.TabIndex = 2;
             this.CreateFiles.Text = "Create file";
             this.CreateFiles.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -195,6 +235,9 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(837, 546);
+            this.Controls.Add(this.button4);
+            this.Controls.Add(this.Foldername);
+            this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.FileName);
             this.Controls.Add(this.button1);
@@ -233,6 +276,9 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.TextBox FileName;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.TextBox Foldername;
+        private System.Windows.Forms.Button button4;
     }
 }
 
