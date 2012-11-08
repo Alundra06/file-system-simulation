@@ -312,7 +312,7 @@ namespace File_System_Simulation
         private void button4_Click(object sender, EventArgs e)
         {
             String path = CurrentFolder.Text;
-            Directory.Delete(path);
+            Directory.Delete(path,true);
 
             //////////////////////////////////
             //////////////////////////////////
