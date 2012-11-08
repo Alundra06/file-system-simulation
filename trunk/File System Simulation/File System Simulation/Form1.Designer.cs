@@ -30,18 +30,18 @@
         {
             this.label1 = new System.Windows.Forms.Label();
             this.FileView = new System.Windows.Forms.TreeView();
-            this.CreateFiles = new System.Windows.Forms.Button();
             this.Filereading = new System.Windows.Forms.RichTextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.BinaryContent = new System.Windows.Forms.RichTextBox();
-            this.DeleteFiles = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
             this.CurrentFolder = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
             this.FileName = new System.Windows.Forms.TextBox();
             this.button2 = new System.Windows.Forms.Button();
+            this.DeleteFiles = new System.Windows.Forms.Button();
+            this.CreateFiles = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -62,16 +62,6 @@
             this.FileView.Size = new System.Drawing.Size(302, 315);
             this.FileView.TabIndex = 1;
             this.FileView.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeView1_AfterSelect);
-            // 
-            // CreateFiles
-            // 
-            this.CreateFiles.Location = new System.Drawing.Point(12, 109);
-            this.CreateFiles.Name = "CreateFiles";
-            this.CreateFiles.Size = new System.Drawing.Size(103, 23);
-            this.CreateFiles.TabIndex = 2;
-            this.CreateFiles.Text = "Create file";
-            this.CreateFiles.UseVisualStyleBackColor = true;
-            this.CreateFiles.Click += new System.EventHandler(this.CreateFiles_Click);
             // 
             // Filereading
             // 
@@ -125,16 +115,6 @@
             this.BinaryContent.Text = "";
             this.BinaryContent.TextChanged += new System.EventHandler(this.BinaryContent_TextChanged);
             // 
-            // DeleteFiles
-            // 
-            this.DeleteFiles.Location = new System.Drawing.Point(12, 163);
-            this.DeleteFiles.Name = "DeleteFiles";
-            this.DeleteFiles.Size = new System.Drawing.Size(103, 23);
-            this.DeleteFiles.TabIndex = 9;
-            this.DeleteFiles.Text = "Delete file";
-            this.DeleteFiles.UseVisualStyleBackColor = true;
-            this.DeleteFiles.Click += new System.EventHandler(this.button2_Click);
-            // 
             // label5
             // 
             this.label5.AutoSize = true;
@@ -182,6 +162,33 @@
             this.button2.Text = "Save Updates";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click_1);
+            // 
+            // DeleteFiles
+            // 
+            this.DeleteFiles.Image = global::File_System_Simulation.Properties.Resources.Button_Delete_icon;
+            this.DeleteFiles.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.DeleteFiles.Location = new System.Drawing.Point(12, 163);
+            this.DeleteFiles.Name = "DeleteFiles";
+            this.DeleteFiles.Size = new System.Drawing.Size(103, 34);
+            this.DeleteFiles.TabIndex = 9;
+            this.DeleteFiles.Text = "Delete file";
+            this.DeleteFiles.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.DeleteFiles.UseVisualStyleBackColor = true;
+            this.DeleteFiles.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // CreateFiles
+            // 
+            this.CreateFiles.Image = global::File_System_Simulation.Properties.Resources.Document_icon__1_;
+            this.CreateFiles.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.CreateFiles.Location = new System.Drawing.Point(14, 96);
+            this.CreateFiles.Name = "CreateFiles";
+            this.CreateFiles.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.CreateFiles.Size = new System.Drawing.Size(103, 34);
+            this.CreateFiles.TabIndex = 2;
+            this.CreateFiles.Text = "Create file";
+            this.CreateFiles.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.CreateFiles.UseVisualStyleBackColor = true;
+            this.CreateFiles.Click += new System.EventHandler(this.CreateFiles_Click);
             // 
             // Form1
             // 
