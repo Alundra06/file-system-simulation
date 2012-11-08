@@ -73,5 +73,19 @@ namespace File_System_Simulation.Properties {
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
+        
+        internal static System.Drawing.Bitmap folder_close_icon {
+            get {
+                object obj = ResourceManager.GetObject("folder-close-icon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap Folder_Delete_icon {
+            get {
+                object obj = ResourceManager.GetObject("Folder-Delete-icon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
     }
 }
