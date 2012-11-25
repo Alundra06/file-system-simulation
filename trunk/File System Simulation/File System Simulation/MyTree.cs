@@ -3,14 +3,14 @@ using System.Collections.Generic;
 
 namespace File_System_Simulation
 {
-    class MyTree
+    class FileSimulator
     {
         //private List myTree = new List; 
         private static  List<Node> MyNodes = new List<Node>();
         private Node root;
         private string filepath = "";
         //Constructor
-        public MyTree()
+        public FileSimulator()
         {
 
             // Create the root of the file system:
