@@ -271,7 +271,7 @@ namespace File_System_Simulation
                 myTree.resetFilepath();
             }
            
-            FileView.PathSeparator = @"\";
+            //FileView.PathSeparator = @"\";
             PopulateTreeView(FileView, paths, '\\');
            
            // populateTree(FileView,paths);
