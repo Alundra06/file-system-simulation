@@ -140,18 +140,19 @@ namespace File_System_Simulation
         private void button3_Click(object sender, EventArgs e)
         {
             File my_file = new File();
-            if (myTree.file_exists(Foldername.Text))
+            string fileID;
+
+            if (CurrentFolder.Text == "Root:\\")
+                fileID = CurrentFolder.Text + Foldername.Text;
+            else
+                fileID = CurrentFolder.Text + "\\" + Foldername.Text;
+            if (myTree.file_exists(fileID))
             {
                 MessageBox.Show("The Folder exists already");
             }
             else
             {
-                string fileID;
-
-                if (CurrentFolder.Text == "Root:\\")
-                    fileID = CurrentFolder.Text + Foldername.Text;
-                else
-                    fileID = CurrentFolder.Text + "\\" + Foldername.Text;
+                
                 my_file.Create_File(fileID,Foldername.Text, "Folder", DateTime.Today.Date, 0, 0, "");
                 myTree.Insert(my_file, CurrentFolder.Text);
 
@@ -252,7 +253,12 @@ namespace File_System_Simulation
             {
                 string random = System.IO.Path.GetRandomFileName().Replace(".", string.Empty);
                 File my_file = new File();
-                string fileID = CurrentFolder.Text + "\\" + random;
+                //string fileID = CurrentFolder.Text + "\\" + random;
+                string fileID;
+                if (CurrentFolder.Text == "Root:\\")
+                    fileID = CurrentFolder.Text + random;
+                else
+                    fileID = CurrentFolder.Text + "\\" + random;
                 my_file.Create_File(fileID,random, "File", DateTime.Today.Date, 0, 0, "Hello People");
                 myTree.Insert(my_file, CurrentFolder.Text);
             }

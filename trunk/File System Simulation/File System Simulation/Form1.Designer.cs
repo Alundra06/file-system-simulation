@@ -140,9 +140,9 @@
             // 
             // Currentlocation
             // 
-            this.Currentlocation.Enabled = false;
             this.Currentlocation.Location = new System.Drawing.Point(282, 404);
             this.Currentlocation.Name = "Currentlocation";
+            this.Currentlocation.ReadOnly = true;
             this.Currentlocation.Size = new System.Drawing.Size(173, 20);
             this.Currentlocation.TabIndex = 11;
             // 
@@ -239,9 +239,9 @@
             // 
             // CurrentFolder
             // 
-            this.CurrentFolder.Enabled = false;
             this.CurrentFolder.Location = new System.Drawing.Point(282, 427);
             this.CurrentFolder.Name = "CurrentFolder";
+            this.CurrentFolder.ReadOnly = true;
             this.CurrentFolder.Size = new System.Drawing.Size(173, 20);
             this.CurrentFolder.TabIndex = 18;
             // 
