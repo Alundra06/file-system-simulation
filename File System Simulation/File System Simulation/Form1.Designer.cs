@@ -34,7 +34,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.BinaryContent = new System.Windows.Forms.RichTextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.Currentlocation = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
@@ -42,21 +41,37 @@
             this.button2 = new System.Windows.Forms.Button();
             this.Foldername = new System.Windows.Forms.TextBox();
             this.button4 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
+            this.b_Create_Folder = new System.Windows.Forms.Button();
             this.DeleteFiles = new System.Windows.Forms.Button();
             this.CreateFiles = new System.Windows.Forms.Button();
             this.CurrentFolder = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.totalElements = new System.Windows.Forms.TextBox();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.totalElements = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.totalfolders = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripStatusLabel3 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.totalfiles = new System.Windows.Forms.ToolStripStatusLabel();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.createFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.create100RandomFilesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ContentGrid = new System.Windows.Forms.DataGridView();
+            this.Name = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Type = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.statusStrip1.SuspendLayout();
+            this.menuStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ContentGrid)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.Maroon;
-            this.label1.Location = new System.Drawing.Point(403, 9);
+            this.label1.ForeColor = System.Drawing.Color.MediumSeaGreen;
+            this.label1.Location = new System.Drawing.Point(304, 28);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(280, 29);
             this.label1.TabIndex = 0;
@@ -112,16 +127,6 @@
             this.label4.TabIndex = 8;
             this.label4.Text = "Raw Content";
             // 
-            // BinaryContent
-            // 
-            this.BinaryContent.Location = new System.Drawing.Point(473, 320);
-            this.BinaryContent.Name = "BinaryContent";
-            this.BinaryContent.ReadOnly = true;
-            this.BinaryContent.Size = new System.Drawing.Size(341, 160);
-            this.BinaryContent.TabIndex = 7;
-            this.BinaryContent.Text = "";
-            this.BinaryContent.TextChanged += new System.EventHandler(this.BinaryContent_TextChanged);
-            // 
             // label5
             // 
             this.label5.AutoSize = true;
@@ -132,7 +137,6 @@
             this.label5.Size = new System.Drawing.Size(109, 15);
             this.label5.TabIndex = 10;
             this.label5.Text = "Current location";
-            this.label5.Click += new System.EventHandler(this.label5_Click);
             // 
             // Currentlocation
             // 
@@ -141,11 +145,10 @@
             this.Currentlocation.Name = "Currentlocation";
             this.Currentlocation.Size = new System.Drawing.Size(173, 20);
             this.Currentlocation.TabIndex = 11;
-            this.Currentlocation.TextChanged += new System.EventHandler(this.CurrentFolder_TextChanged);
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(739, 541);
+            this.button1.Location = new System.Drawing.Point(739, 486);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 12;
@@ -190,22 +193,21 @@
             this.button4.Text = "Delete folder";
             this.button4.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
-            // button3
+            // b_Create_Folder
             // 
-            this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button3.Image = global::File_System_Simulation.Properties.Resources.folder_close_icon;
-            this.button3.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button3.Location = new System.Drawing.Point(12, 225);
-            this.button3.Name = "button3";
-            this.button3.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.button3.Size = new System.Drawing.Size(121, 34);
-            this.button3.TabIndex = 15;
-            this.button3.Text = "Create folder";
-            this.button3.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
+            this.b_Create_Folder.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.b_Create_Folder.Image = global::File_System_Simulation.Properties.Resources.folder_close_icon;
+            this.b_Create_Folder.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.b_Create_Folder.Location = new System.Drawing.Point(12, 225);
+            this.b_Create_Folder.Name = "b_Create_Folder";
+            this.b_Create_Folder.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.b_Create_Folder.Size = new System.Drawing.Size(121, 34);
+            this.b_Create_Folder.TabIndex = 15;
+            this.b_Create_Folder.Text = "Create folder";
+            this.b_Create_Folder.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.b_Create_Folder.UseVisualStyleBackColor = true;
+            this.b_Create_Folder.Click += new System.EventHandler(this.button3_Click);
             // 
             // DeleteFiles
             // 
@@ -219,7 +221,6 @@
             this.DeleteFiles.Text = "Delete file";
             this.DeleteFiles.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.DeleteFiles.UseVisualStyleBackColor = true;
-            this.DeleteFiles.Click += new System.EventHandler(this.button2_Click);
             // 
             // CreateFiles
             // 
@@ -255,38 +256,140 @@
             this.label6.TabIndex = 19;
             this.label6.Text = "Current Folder";
             // 
-            // label7
+            // statusStrip1
             // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            this.label7.Location = new System.Drawing.Point(150, 453);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(175, 15);
-            this.label7.TabIndex = 20;
-            this.label7.Text = "Total number of elements:";
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripStatusLabel1,
+            this.totalElements,
+            this.toolStripStatusLabel2,
+            this.totalfolders,
+            this.toolStripStatusLabel3,
+            this.totalfiles});
+            this.statusStrip1.Location = new System.Drawing.Point(0, 540);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Size = new System.Drawing.Size(837, 22);
+            this.statusStrip1.TabIndex = 22;
+            this.statusStrip1.Text = "statusStrip1";
+            // 
+            // toolStripStatusLabel1
+            // 
+            this.toolStripStatusLabel1.ForeColor = System.Drawing.Color.DarkRed;
+            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(147, 17);
+            this.toolStripStatusLabel1.Text = "Total number of elements:";
             // 
             // totalElements
             // 
-            this.totalElements.Enabled = false;
-            this.totalElements.Location = new System.Drawing.Point(401, 450);
+            this.totalElements.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.totalElements.ForeColor = System.Drawing.Color.Red;
             this.totalElements.Name = "totalElements";
-            this.totalElements.Size = new System.Drawing.Size(54, 20);
-            this.totalElements.TabIndex = 21;
-            this.totalElements.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            this.totalElements.Size = new System.Drawing.Size(127, 17);
+            this.totalElements.Text = "toolStripStatusLabel2";
+            // 
+            // toolStripStatusLabel2
+            // 
+            this.toolStripStatusLabel2.ForeColor = System.Drawing.Color.Maroon;
+            this.toolStripStatusLabel2.Name = "toolStripStatusLabel2";
+            this.toolStripStatusLabel2.Size = new System.Drawing.Size(137, 17);
+            this.toolStripStatusLabel2.Text = "Total number of Folders:";
+            // 
+            // totalfolders
+            // 
+            this.totalfolders.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.totalfolders.ForeColor = System.Drawing.Color.Red;
+            this.totalfolders.Name = "totalfolders";
+            this.totalfolders.Size = new System.Drawing.Size(127, 17);
+            this.totalfolders.Text = "toolStripStatusLabel3";
+            // 
+            // toolStripStatusLabel3
+            // 
+            this.toolStripStatusLabel3.ForeColor = System.Drawing.Color.Maroon;
+            this.toolStripStatusLabel3.Name = "toolStripStatusLabel3";
+            this.toolStripStatusLabel3.Size = new System.Drawing.Size(122, 17);
+            this.toolStripStatusLabel3.Text = "Total number of Files:";
+            // 
+            // totalfiles
+            // 
+            this.totalfiles.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.totalfiles.ForeColor = System.Drawing.Color.Red;
+            this.totalfiles.Name = "totalfiles";
+            this.totalfiles.Size = new System.Drawing.Size(127, 17);
+            this.totalfiles.Text = "toolStripStatusLabel3";
+            // 
+            // menuStrip1
+            // 
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.fileToolStripMenuItem});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(837, 24);
+            this.menuStrip1.TabIndex = 24;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // fileToolStripMenuItem
+            // 
+            this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.createFileToolStripMenuItem,
+            this.create100RandomFilesToolStripMenuItem});
+            this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
+            this.fileToolStripMenuItem.Text = "File";
+            // 
+            // createFileToolStripMenuItem
+            // 
+            this.createFileToolStripMenuItem.Name = "createFileToolStripMenuItem";
+            this.createFileToolStripMenuItem.Size = new System.Drawing.Size(198, 22);
+            this.createFileToolStripMenuItem.Text = "Create File";
+            this.createFileToolStripMenuItem.Click += new System.EventHandler(this.createFileToolStripMenuItem_Click);
+            // 
+            // create100RandomFilesToolStripMenuItem
+            // 
+            this.create100RandomFilesToolStripMenuItem.Name = "create100RandomFilesToolStripMenuItem";
+            this.create100RandomFilesToolStripMenuItem.Size = new System.Drawing.Size(198, 22);
+            this.create100RandomFilesToolStripMenuItem.Text = "Create 100 random files";
+            this.create100RandomFilesToolStripMenuItem.Click += new System.EventHandler(this.create100RandomFilesToolStripMenuItem_Click);
+            // 
+            // ContentGrid
+            // 
+            this.ContentGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.ContentGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Name,
+            this.Type,
+            this.ID});
+            this.ContentGrid.Location = new System.Drawing.Point(473, 320);
+            this.ContentGrid.Name = "ContentGrid";
+            this.ContentGrid.Size = new System.Drawing.Size(341, 150);
+            this.ContentGrid.TabIndex = 25;
+            // 
+            // Name
+            // 
+            this.Name.HeaderText = "Name";
+            this.Name.Name = "Name";
+            // 
+            // Type
+            // 
+            this.Type.HeaderText = "Type";
+            this.Type.Name = "Type";
+            // 
+            // ID
+            // 
+            this.ID.HeaderText = "ID";
+            this.ID.Name = "ID";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(837, 576);
-            this.Controls.Add(this.totalElements);
-            this.Controls.Add(this.label7);
+            this.ClientSize = new System.Drawing.Size(837, 562);
+            this.Controls.Add(this.ContentGrid);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.statusStrip1);
+            this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.CurrentFolder);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.Foldername);
-            this.Controls.Add(this.button3);
+            this.Controls.Add(this.b_Create_Folder);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.FileName);
             this.Controls.Add(this.button1);
@@ -294,16 +397,20 @@
             this.Controls.Add(this.label5);
             this.Controls.Add(this.DeleteFiles);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.BinaryContent);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.Filereading);
             this.Controls.Add(this.CreateFiles);
             this.Controls.Add(this.FileView);
-            this.Controls.Add(this.label1);
-            this.Name = "Form1";
+            this.MainMenuStrip = this.menuStrip1;
+            //this.Name = "Form1";
             this.Text = "File System Simulation";
             this.Load += new System.EventHandler(this.Form1_Load);
+            this.statusStrip1.ResumeLayout(false);
+            this.statusStrip1.PerformLayout();
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ContentGrid)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -318,20 +425,32 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.RichTextBox BinaryContent;
         private System.Windows.Forms.Button DeleteFiles;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox Currentlocation;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.TextBox FileName;
         private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button b_Create_Folder;
         private System.Windows.Forms.TextBox Foldername;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.TextBox CurrentFolder;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TextBox totalElements;
+        private System.Windows.Forms.StatusStrip statusStrip1;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
+        private System.Windows.Forms.ToolStripStatusLabel totalElements;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel2;
+        private System.Windows.Forms.ToolStripStatusLabel totalfolders;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel3;
+        private System.Windows.Forms.ToolStripStatusLabel totalfiles;
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem create100RandomFilesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem createFileToolStripMenuItem;
+        private System.Windows.Forms.DataGridView ContentGrid;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Name;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Type;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ID;
     }
 }
 
