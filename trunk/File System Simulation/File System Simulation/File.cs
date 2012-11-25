@@ -15,8 +15,10 @@ namespace File_System_Simulation
         private double size;
         private int Datalink;
         private string content;
+        private string ID;
 
         public File(
+            string ID,
             string fileName,
             string fileType,
             DateTime dateofCreation,
@@ -25,6 +27,7 @@ namespace File_System_Simulation
             string fileContent
             )
         {
+            this.ID = ID;
             this.Name = fileName;
             this.size = filesize;
             this.DateOfCreation = dateofCreation;
@@ -41,6 +44,7 @@ namespace File_System_Simulation
 
         public void Create_File(
             
+            string ID,
             string fileName,
             string fileType,
             DateTime dateofCreation,
@@ -49,6 +53,7 @@ namespace File_System_Simulation
             string fileContent
             )
         {
+            this.ID = ID;
             this.Name = fileName;
             this.size = filesize;
             this.DateOfCreation = dateofCreation;
@@ -65,6 +70,15 @@ namespace File_System_Simulation
         {
             return this.type;
         }
+        public string get_ID()
+        {
+            return this.ID;
+        }
+        public string get_FileContent()
+        {
+            return this.content;
+        }
+
 
     }
 }
