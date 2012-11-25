@@ -11,7 +11,7 @@ namespace File_System_Simulation
     public partial class Form1 : Form
     {
         //Initiate the tree data structure
-        MyTree myTree = new MyTree();
+        FileSimulator myTree = new FileSimulator();
         public Form1()
         {
             
