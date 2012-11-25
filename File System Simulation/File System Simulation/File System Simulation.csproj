@@ -56,11 +56,8 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Tree Implementation\ITreeNode.cs" />
     <Compile Include="Tree Implementation\MyTree.cs" />
     <Compile Include="Tree Implementation\Node.cs" />
-    <Compile Include="Tree Implementation\SpecialTreeNode.cs" />
-    <Compile Include="Tree Implementation\TreeNodeBase.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
