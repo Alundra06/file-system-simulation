@@ -3,26 +3,20 @@ using System.Text;
 using System.Windows.Forms;
 using System.IO;
 using System.Drawing;
+using System.Collections.Generic;
+using System.Collections;
 
 namespace File_System_Simulation
 {
     public partial class Form1 : Form
     {
+        //Initiate the tree data structure
+        MyTree myTree = new MyTree();
         public Form1()
         {
+            
             InitializeComponent();
-
-            //Fill the tree drives mapping
-            try
-            {
-                FileView.Nodes.Clear();
-                fillTree();
-            }
-            catch (System.Exception ex)
-            {
-                MessageBox.Show(ex.ToString());
-            }
-          
+            Fill_Mytree();
 
         }
 
@@ -33,143 +27,44 @@ namespace File_System_Simulation
                 MessageBox.Show("Please insert a valid file name");
                 FileName.BackColor = Color.Red;
             }
-            
+
             else
             {
 
                 FileName.BackColor = Color.White;
-            try
-            {
-                string Path = CurrentFolder.Text;
-                string fileName = Path + FileName.Text;
-                FileStream fstPersons = new FileStream(fileName, FileMode.Create);
-                BinaryWriter wrtPersons = new BinaryWriter(fstPersons);
-                wrtPersons.Write("James Bloch");
-                wrtPersons.Write("Catherina Wallace");
-                wrtPersons.Write("Bruce Lamont");
-                wrtPersons.Write("Douglas Truth");
-                wrtPersons.Close();
-                fstPersons.Close();
-              //////////////////////////////////
-              //////////////////////////////////
-              /// Refresh the Treeview://///////
-              /// /////////////////////////////
-              /////////////////////////////////
-                try
+                File my_file = new File();
+                if (myTree.file_exists(FileName.Text))
                 {
-                    FileView.Nodes.Clear();
-                    fillTree();
+                    MessageBox.Show("The file exists already");
                 }
-                catch (System.Exception ex)
+                else
                 {
-                    MessageBox.Show(ex.ToString());
-                }
-                
-            }
-            catch (System.Exception ex)
-            {
-                MessageBox.Show(ex.Message.ToString());
-            }
-            
-            
-            }
-        }
+                    my_file.Create_File(FileName.Text, "File", DateTime.Today.Date, 0, 0, "Hello People");
+                    myTree.Insert(my_file, CurrentFolder.Text);
 
-        private void fillTree()
-        {
-            string[] drives = Environment.GetLogicalDrives();
-            foreach (string dr in drives)
-            {
-                TreeNode node = new TreeNode(dr);
-                node.Tag = dr;
-                node.ImageIndex = 0; // drive icon
-                node.Tag = dr;
-                FileView.Nodes.Add(node);
-                node.Nodes.Add(new TreeNode("?"));
-            }
-            FileView.BeforeExpand += new TreeViewCancelEventHandler(treeView1_BeforeExpand);
-        }
-
-        void treeView1_BeforeExpand(object sender, TreeViewCancelEventArgs e)
-        {
-            if ((e.Node.Nodes.Count == 1) && (e.Node.Nodes[0].Text == "?"))
-            {
-                RecursiveDirWalk(e.Node);
-            }
-        }
-
-        private TreeNode RecursiveDirWalk(TreeNode node)
-        {
-            string path = (string)node.Tag;
-            node.Nodes.Clear();
-           
-            try
-            {
-                string[] dirs = System.IO.Directory.GetDirectories(path);
-                for (int t = 0; t < dirs.Length; t++)
-                {
-                    TreeNode n = new TreeNode(dirs[t].Substring(dirs[t].LastIndexOf('\\') + 1));
-                    n.ImageIndex = 1; // dir icon
-                    n.Tag = dirs[t];
-                    node.Nodes.Add(n);
-                    n.Nodes.Add(new TreeNode("?"));
                 }
 
-                // Optional if you want files as well:
-                string[] files = System.IO.Directory.GetFiles(path);
-                for (int t = 0; t < files.Length; t++)
-                {
-                    TreeNode tn = new TreeNode(System.IO.Path.GetFileName(files[t]));
-                    tn.Tag = files[t];
-                    tn.ImageIndex = 2; // file icon
-                    node.Nodes.Add(tn);
-                } // end of optional file part
             }
-            catch (System.Exception ex)
-            {
-                MessageBox.Show(ex.Message.ToString());
-            }
-            
-            
-
-            return node;
+            Fill_Mytree();
+            //Refresh total elements
+            totalElements.Text = myTree.get_Count().ToString();    
         }
-        private void treeView1_AfterSelect(object sender, TreeViewEventArgs e)
-        {
 
-            try
-            {
-                CurrentFolder.Text = FileView.SelectedNode.FullPath;
-                FileStream fleReader = new FileStream(FileView.SelectedNode.FullPath, FileMode.Open, FileAccess.Read);
-                StreamReader stmReader = new StreamReader(fleReader);
-                StringBuilder lstChars = new StringBuilder();
+        
 
-                int iChar = stmReader.Read();
-                lstChars.Append((char)iChar);
-                while (iChar > -1)
-                {
-                    iChar = stmReader.Read();
-                    lstChars.Append((char)iChar);
-                }
 
-                this.Filereading.Text = lstChars.ToString();
-                stmReader.Close();
-                fleReader.Close();
-            }
-            catch (System.Exception ex)
-            {
-               // MessageBox.Show(ex.Message.ToString());
-            }
 
-            try
-            {
-                DisplayBinaryFile();
-            }
-            catch (System.Exception ex)
-            {
-                //MessageBox.Show(ex.ToString());
-            }
-        }
+
+
+
+
+
+
+
+       
+
+        
+
         private void Filereading_TextChanged(object sender, EventArgs e)
         {
 
@@ -220,27 +115,7 @@ namespace File_System_Simulation
 
         private void button2_Click(object sender, EventArgs e)
         {
-            string path = CurrentFolder.Text;
-            // Delete the file if it exists. 
-            if (File.Exists(path))
-            {
-                File.Delete(path);
-            }
-            
-             //////////////////////////////////
-              //////////////////////////////////
-              /// Refresh the Treeview://///////
-              /// /////////////////////////////
-              /////////////////////////////////
-                try
-                {
-                    FileView.Nodes.Clear();
-                    fillTree();
-                }
-                catch (System.Exception ex)
-                {
-                    MessageBox.Show(ex.ToString());
-                }
+          
                 
           
         }
@@ -252,16 +127,34 @@ namespace File_System_Simulation
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
+            totalElements.Text = myTree.get_Count().ToString();
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
             Close();
+
         }
 
+        private void Get_current_Folder()
+        {
+            string[] split = Currentlocation.Text.Split(new Char[] { '\\', ':' });
+
+            Stack myfolders = new Stack();
+            foreach (string s in split)
+            {
+                if(s!="")
+                myfolders.Push(s);
+            }
+            if (!myTree.isFolder(myfolders.Peek().ToString()))
+            {
+                myfolders.Pop();
+            }
+            CurrentFolder.Text = myfolders.Peek().ToString();
+        }
         private void Clickme1_Click(object sender, EventArgs e)
         {
+            
             MessageBox.Show("test");
         }
 
@@ -272,7 +165,48 @@ namespace File_System_Simulation
 
         private void button2_Click_1(object sender, EventArgs e)
         {
+          
+            
 
+            string all_nodes = "";
+            foreach (Node node in myTree.get_All_Nodes()) // Loop through List with foreach
+            {
+
+                string parent = "";
+                if (node.Parent == null)
+                    parent = "Null";
+                else
+                    parent = node.Parent.Element.get_Name();
+                all_nodes += node.Element.get_Name() + "-" + node.Element.get_Filetype()+ "--"+parent + "\n";
+            }
+            Filereading.Text = all_nodes;
+            FileView.Refresh();
+            Fill_Mytree();
+            //SpecialTreeNode rootTreeNode = new SpecialTreeNode("Node1");
+            //var node2a = new SpecialTreeNode("Node 2a");
+            //var node2b = new SpecialTreeNode("Node 2b");
+            //var node2c = new SpecialTreeNode("Node 2c");
+
+            //node2a.IsSpecial = true;
+            //node2c.IsSpecial = true;
+
+            //rootTreeNode.AddChild(node2a);
+            //rootTreeNode.AddChild(node2b);
+            //rootTreeNode.AddChild(node2c);
+
+            //var node3ca = new SpecialTreeNode("Node 3ca");
+            //node2c.AddChild(node3ca);
+
+            //Console.WriteLine(string.Format("Root has {0} nodes", rootTreeNode.ChildNodes.Count));
+            //Filereading.Text += "Root has {0} nodes" + rootTreeNode.ChildNodes.Count + "----------";
+            //Console.WriteLine(string.Format("Root has {0} special nodes", rootTreeNode.GetSpecialNodes().Count));
+            //Filereading.Text +="Root has {0} special nodes"+ rootTreeNode.GetSpecialNodes().Count + "----------";
+            //Console.WriteLine(string.Format("Root has {0} special leaf nodes", rootTreeNode.GetSpecialLeafNodes().Count));
+            //Filereading.Text += "Root has {0} special leaf nodes"+rootTreeNode.GetSpecialLeafNodes().Count + "----------";
+            //Console.WriteLine(string.Format("Root has {0} leaf nodes", rootTreeNode.GetLeafNodes().Count));
+            //Filereading.Text += "Root has {0} leaf nodes"+rootTreeNode.GetLeafNodes().Count + "----------";
+            //Console.WriteLine("Press any key to end");
+            ////Console.ReadKey();
         }
 
         private void label5_Click(object sender, EventArgs e)
@@ -282,56 +216,136 @@ namespace File_System_Simulation
 
         private void button3_Click(object sender, EventArgs e)
         {
-            String path = CurrentFolder.Text + "/" + Foldername.Text;
-            if (Directory.Exists(path))
+            File my_file = new File();
+            if (myTree.file_exists(Foldername.Text))
             {
-                MessageBox.Show("That folder exists already");
+                MessageBox.Show("The Folder exists already");
             }
             else
             {
-                // Try to create the directory.
-                DirectoryInfo di = Directory.CreateDirectory(path);
-            }
+                my_file.Create_File(Foldername.Text, "Folder", DateTime.Today.Date, 0, 0, "");
+                myTree.Insert(my_file, CurrentFolder.Text);
 
-            //////////////////////////////////
-            //////////////////////////////////
-            /// Refresh the Treeview://///////
-            /// /////////////////////////////
-            /////////////////////////////////
-            try
-            {
-                FileView.Nodes.Clear();
-                fillTree();
             }
-            catch (System.Exception ex)
-            {
-                MessageBox.Show(ex.ToString());
-            }
+            Fill_Mytree();
+            //Refresh total elements
+            totalElements.Text = myTree.get_Count().ToString();    
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
-            String path = CurrentFolder.Text;
-            Directory.Delete(path,true);
-
-            //////////////////////////////////
-            //////////////////////////////////
-            /// Refresh the Treeview://///////
-            /// /////////////////////////////
-            /////////////////////////////////
-            try
-            {
-                FileView.Nodes.Clear();
-                fillTree();
-            }
-            catch (System.Exception ex)
-            {
-                MessageBox.Show(ex.ToString());
-            }
+           
         }
 
-             
 
-    
+
+        private void Fill_Mytree()
+        {
+
+            var paths = new List<string>
+                        {
+                            @"Root:\",          
+                        };
+            //var paths = new List<string>
+            //            {
+            //                @"C:\freedom",
+            //                @"C:\WINDOWS\Microsoft.NET\Framework\v2.0.50727",
+            //                @"C:\WINDOWS\Microsoft.NET\Framework\v2.0.50727\MUI",
+            //                @"C:\WINDOWS\addins",
+            //                @"C:\WINDOWS\AppPatch",
+            //                @"C:\WINDOWS\AppPatch\MUI",
+            //                @"C:\WINDOWS\Microsoft.NET\Framework\v2.0.50727\MUI\0409"
+            //            };
+            foreach (Node node in myTree.get_All_Nodes()) // Loop through List with foreach
+            {
+
+                string path = "";
+                if (node.Parent != null)
+                {
+                    path = myTree.getFullPath(node);
+                }
+                if (path != "")
+                    paths.Add(path);
+
+                // reset the path
+                myTree.resetFilepath();
+            }
+           
+            FileView.PathSeparator = @"\";
+            PopulateTreeView(FileView, paths, '\\');
+           
+           // populateTree(FileView,paths);
+        }
+
+        private static void PopulateTreeView(TreeView treeView, IEnumerable<string> paths, char pathSeparator)
+        {
+            TreeNode lastNode = null;
+            string subPathAgg;
+            foreach (string path in paths)
+            {
+                subPathAgg = string.Empty;
+                lastNode = null;
+                foreach (string subPath in path.Split(pathSeparator))
+                {
+                    if (subPath != "")
+                    {
+                        subPathAgg += subPath + pathSeparator;
+                        TreeNode[] nodes = treeView.Nodes.Find(subPathAgg, true);
+                        if (nodes.Length == 0)
+                            if (lastNode == null)
+                                lastNode = treeView.Nodes.Add(subPathAgg, subPath);
+                            else
+                                lastNode = lastNode.Nodes.Add(subPathAgg, subPath);
+                        else
+                            lastNode = nodes[0];
+
+                    }
+                }
+            }
+        }
+        private  void populateTree(TreeView treeView,IEnumerable<string> paths)
+        {
+
+            TreeNode root = new TreeNode();
+            TreeNode node = root;
+            treeView.Nodes.Add(root);
+
+            foreach (string filePath in paths) // myList is your list of paths
+            {
+                node = root;
+                foreach (string pathBits in filePath.Split('\\'))
+                {
+                    node = AddNode(node, pathBits);
+                }
+            }
+        }
+        private TreeNode AddNode(TreeNode node, string key)
+        {
+            if (node.Nodes.ContainsKey(key))
+            {
+                return node.Nodes[key];
+            }
+            else
+            {
+                return node.Nodes.Add(key, key);
+            }
+        }
+        private void CurrentFolder_TextChanged(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void FileView_AfterSelect(object sender, TreeViewEventArgs e)
+        {
+            //CurrentFolder.Text = FileView.SelectedNode.FirstNode.Text;
+            Currentlocation.Text = FileView.SelectedNode.FullPath;
+            Get_current_Folder();
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+      
     }
 }
