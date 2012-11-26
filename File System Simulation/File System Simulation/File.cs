@@ -9,13 +9,15 @@ namespace File_System_Simulation
     class File 
 
     {
+        private string ID;//to hold the unique ID of the file (The full path)
         private string Name;
-        private string type;
+        private string type;//Folder or file
         private DateTime DateOfCreation;
         private double size;
-        private int Datalink;
-        private string content;
-        private string ID;
+        //private string content;
+        //Save the first block and number of the blocks for the disk allocation table
+        private int firstBlock;
+        private int numberBlocks;
 
         public File(
             string ID,
@@ -23,16 +25,16 @@ namespace File_System_Simulation
             string fileType,
             DateTime dateofCreation,
             double filesize,
-            int fileDataLink,
-            string fileContent
+            int firstBlock,
+            int numberBlocks
             )
         {
             this.ID = ID;
             this.Name = fileName;
             this.size = filesize;
             this.DateOfCreation = dateofCreation;
-            this.Datalink = fileDataLink;
-            this.content = fileContent;
+            this.firstBlock = firstBlock;
+            this.numberBlocks = numberBlocks;
             this.type = fileType;
 
         }
@@ -43,25 +45,26 @@ namespace File_System_Simulation
         }
 
         public void Create_File(
-            
+
             string ID,
             string fileName,
             string fileType,
             DateTime dateofCreation,
             double filesize,
-            int fileDataLink,
-            string fileContent
+            int firstBlock,
+            int numberBlocks
             )
         {
             this.ID = ID;
             this.Name = fileName;
             this.size = filesize;
             this.DateOfCreation = dateofCreation;
-            this.Datalink = fileDataLink;
-            this.content = fileContent;
+            this.firstBlock = firstBlock;
+            this.numberBlocks = numberBlocks;
             this.type = fileType;
 
         }
+
         public string get_Name()
         {
             return this.Name;
@@ -74,11 +77,18 @@ namespace File_System_Simulation
         {
             return this.ID;
         }
-        public string get_FileContent()
+        //public string get_FileContent()
+        //{
+        //    return this.content;
+        //}
+        public int getFirstBlock()
         {
-            return this.content;
+            return this.firstBlock;
         }
-
-
+        public int getNumberofBlocks()
+        {
+            return this.numberBlocks;
+        }
+        
     }
 }

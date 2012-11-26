@@ -5,9 +5,16 @@ namespace File_System_Simulation
 {
     class FileSimulator
     {
-        //private List myTree = new List; 
+        //Implementation of the "first-Child-Next-sibling tree
         private static  List<Node> MyNodes = new List<Node>();
+        private static int diskSize = 1000;
+        private static int diskBlock = 10;
+       // private static  List<DiskBlocks> myDisk = new List<DiskBlocks>(diskSize/diskBlock);
+        private static DiskBlocks myDisk = new DiskBlocks(diskSize, diskBlock);
+        //The root node
         private Node root;
+        
+
         private string filepath = "";
         //Constructor
         public FileSimulator()
@@ -17,7 +24,7 @@ namespace File_System_Simulation
 
             root = new Node();
             File rootFolder = new File();
-            rootFolder.Create_File("Root:\\", "Root", "Folder", DateTime.Today.Date, 0, 0, "");
+            rootFolder.Create_File("Root:\\", "Root", "Folder", DateTime.Today.Date,0,-1,0);
             root.Element = rootFolder;
             root.FirstChild = null;
             root.NextSibling = null;
@@ -44,7 +51,7 @@ namespace File_System_Simulation
         }
         
         
-        public void Insert(File Myfile,string ParentID)
+        public void Insert(File Myfile,string ParentID,string fileData)
         {
 
             
@@ -57,7 +64,8 @@ namespace File_System_Simulation
             if (parent.FirstChild == null) 
                 parent.FirstChild = newNode;
             MyNodes.Add(newNode);
-
+            if(Myfile.get_Filetype() == "File")
+            myDisk.writeDataToBlocks(Myfile.getFirstBlock(), Myfile.getNumberofBlocks(), fileData);
 
             
         }
@@ -136,7 +144,7 @@ namespace File_System_Simulation
                 return false;
 
         }
-
+       
         public Boolean isFolder(string fileID)
         {
             Boolean isfolder= false;
@@ -172,5 +180,32 @@ namespace File_System_Simulation
 
             return node.Parent.Element.get_ID();
         }
+
+        ///////Disk Simulator methods calls//////////////////
+        /// <summary>
+        /// ///////////////////////////
+        /// </summary>
+        /// <returns></returns>
+        public int getDiskBlockSize()
+        {
+            return myDisk.getBlockSize();
+        }
+        public List<int> getContiguousFreeblocks(int numberOfBlocks)
+        {
+            return myDisk.getContiguousFreeblocks(numberOfBlocks);
+        }
+        public int getDiskSize()
+        {
+            return myDisk.getDiskSize();
+        }
+        public int getFreeSpace()
+        {
+            return myDisk.getFreeSpace();
+        }
+        public int getFreeBlocks()
+        {
+            return myDisk.getFreeBlocks();
+        }
+
     }
 }

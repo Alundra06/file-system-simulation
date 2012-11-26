@@ -61,6 +61,12 @@
             this.Name = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Type = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.FileSize = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.toolStripStatusLabel4 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.diskSpace = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripStatusLabel5 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.freedDiskSpace = new System.Windows.Forms.ToolStripStatusLabel();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ContentGrid)).BeginInit();
@@ -79,7 +85,7 @@
             // 
             // FileView
             // 
-            this.FileView.Location = new System.Drawing.Point(153, 87);
+            this.FileView.Location = new System.Drawing.Point(177, 89);
             this.FileView.Name = "FileView";
             this.FileView.Size = new System.Drawing.Size(302, 315);
             this.FileView.TabIndex = 1;
@@ -87,7 +93,7 @@
             // 
             // Filereading
             // 
-            this.Filereading.Location = new System.Drawing.Point(473, 87);
+            this.Filereading.Location = new System.Drawing.Point(496, 87);
             this.Filereading.Name = "Filereading";
             this.Filereading.Size = new System.Drawing.Size(341, 160);
             this.Filereading.TabIndex = 4;
@@ -110,7 +116,7 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            this.label3.Location = new System.Drawing.Point(585, 71);
+            this.label3.Location = new System.Drawing.Point(626, 71);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(127, 16);
             this.label3.TabIndex = 6;
@@ -121,7 +127,7 @@
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            this.label4.Location = new System.Drawing.Point(585, 301);
+            this.label4.Location = new System.Drawing.Point(617, 301);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(94, 16);
             this.label4.TabIndex = 8;
@@ -132,7 +138,7 @@
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            this.label5.Location = new System.Drawing.Point(150, 405);
+            this.label5.Location = new System.Drawing.Point(174, 424);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(109, 15);
             this.label5.TabIndex = 10;
@@ -140,7 +146,7 @@
             // 
             // Currentlocation
             // 
-            this.Currentlocation.Location = new System.Drawing.Point(282, 404);
+            this.Currentlocation.Location = new System.Drawing.Point(306, 423);
             this.Currentlocation.Name = "Currentlocation";
             this.Currentlocation.ReadOnly = true;
             this.Currentlocation.Size = new System.Drawing.Size(173, 20);
@@ -166,7 +172,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(588, 253);
+            this.button2.Location = new System.Drawing.Point(620, 253);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(133, 23);
             this.button2.TabIndex = 14;
@@ -214,7 +220,7 @@
             this.DeleteFiles.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.DeleteFiles.Image = global::File_System_Simulation.Properties.Resources.Button_Delete_icon;
             this.DeleteFiles.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.DeleteFiles.Location = new System.Drawing.Point(12, 163);
+            this.DeleteFiles.Location = new System.Drawing.Point(12, 185);
             this.DeleteFiles.Name = "DeleteFiles";
             this.DeleteFiles.Size = new System.Drawing.Size(121, 34);
             this.DeleteFiles.TabIndex = 9;
@@ -239,7 +245,7 @@
             // 
             // CurrentFolder
             // 
-            this.CurrentFolder.Location = new System.Drawing.Point(282, 427);
+            this.CurrentFolder.Location = new System.Drawing.Point(306, 446);
             this.CurrentFolder.Name = "CurrentFolder";
             this.CurrentFolder.ReadOnly = true;
             this.CurrentFolder.Size = new System.Drawing.Size(173, 20);
@@ -250,7 +256,7 @@
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            this.label6.Location = new System.Drawing.Point(150, 427);
+            this.label6.Location = new System.Drawing.Point(174, 446);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(99, 15);
             this.label6.TabIndex = 19;
@@ -264,10 +270,14 @@
             this.toolStripStatusLabel2,
             this.totalfolders,
             this.toolStripStatusLabel3,
-            this.totalfiles});
+            this.totalfiles,
+            this.toolStripStatusLabel4,
+            this.diskSpace,
+            this.toolStripStatusLabel5,
+            this.freedDiskSpace});
             this.statusStrip1.Location = new System.Drawing.Point(0, 540);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(837, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(1065, 22);
             this.statusStrip1.TabIndex = 22;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -283,8 +293,8 @@
             this.totalElements.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.totalElements.ForeColor = System.Drawing.Color.Red;
             this.totalElements.Name = "totalElements";
-            this.totalElements.Size = new System.Drawing.Size(127, 17);
-            this.totalElements.Text = "toolStripStatusLabel2";
+            this.totalElements.Size = new System.Drawing.Size(19, 17);
+            this.totalElements.Text = "to";
             // 
             // toolStripStatusLabel2
             // 
@@ -298,8 +308,8 @@
             this.totalfolders.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.totalfolders.ForeColor = System.Drawing.Color.Red;
             this.totalfolders.Name = "totalfolders";
-            this.totalfolders.Size = new System.Drawing.Size(127, 17);
-            this.totalfolders.Text = "toolStripStatusLabel3";
+            this.totalfolders.Size = new System.Drawing.Size(19, 17);
+            this.totalfolders.Text = "to";
             // 
             // toolStripStatusLabel3
             // 
@@ -313,8 +323,8 @@
             this.totalfiles.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.totalfiles.ForeColor = System.Drawing.Color.Red;
             this.totalfiles.Name = "totalfiles";
-            this.totalfiles.Size = new System.Drawing.Size(127, 17);
-            this.totalfiles.Text = "toolStripStatusLabel3";
+            this.totalfiles.Size = new System.Drawing.Size(19, 17);
+            this.totalfiles.Text = "to";
             // 
             // menuStrip1
             // 
@@ -322,7 +332,7 @@
             this.fileToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(837, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(1065, 24);
             this.menuStrip1.TabIndex = 24;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -356,7 +366,7 @@
             this.Name,
             this.Type,
             this.ID});
-            this.ContentGrid.Location = new System.Drawing.Point(473, 320);
+            this.ContentGrid.Location = new System.Drawing.Point(496, 320);
             this.ContentGrid.Name = "ContentGrid";
             this.ContentGrid.Size = new System.Drawing.Size(341, 150);
             this.ContentGrid.TabIndex = 25;
@@ -376,11 +386,61 @@
             this.ID.HeaderText = "ID";
             this.ID.Name = "ID";
             // 
+            // FileSize
+            // 
+            this.FileSize.Location = new System.Drawing.Point(57, 159);
+            this.FileSize.Name = "FileSize";
+            this.FileSize.Size = new System.Drawing.Size(76, 20);
+            this.FileSize.TabIndex = 26;
+            this.FileSize.Text = "10";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(22, 162);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(30, 13);
+            this.label7.TabIndex = 27;
+            this.label7.Text = "Size:";
+            // 
+            // toolStripStatusLabel4
+            // 
+            this.toolStripStatusLabel4.ForeColor = System.Drawing.Color.Maroon;
+            this.toolStripStatusLabel4.Name = "toolStripStatusLabel4";
+            this.toolStripStatusLabel4.Size = new System.Drawing.Size(66, 17);
+            this.toolStripStatusLabel4.Text = "Disk Space:";
+            this.toolStripStatusLabel4.Click += new System.EventHandler(this.toolStripStatusLabel4_Click);
+            // 
+            // diskSpace
+            // 
+            this.diskSpace.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.diskSpace.ForeColor = System.Drawing.Color.Red;
+            this.diskSpace.Name = "diskSpace";
+            this.diskSpace.Size = new System.Drawing.Size(19, 17);
+            this.diskSpace.Text = "to";
+            // 
+            // toolStripStatusLabel5
+            // 
+            this.toolStripStatusLabel5.ForeColor = System.Drawing.Color.Maroon;
+            this.toolStripStatusLabel5.Name = "toolStripStatusLabel5";
+            this.toolStripStatusLabel5.Size = new System.Drawing.Size(91, 17);
+            this.toolStripStatusLabel5.Text = "Free Disk Space:";
+            // 
+            // freedDiskSpace
+            // 
+            this.freedDiskSpace.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.freedDiskSpace.ForeColor = System.Drawing.Color.Red;
+            this.freedDiskSpace.Name = "freedDiskSpace";
+            this.freedDiskSpace.Size = new System.Drawing.Size(19, 17);
+            this.freedDiskSpace.Text = "to";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(837, 562);
+            this.ClientSize = new System.Drawing.Size(1065, 562);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.FileSize);
             this.Controls.Add(this.ContentGrid);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.statusStrip1);
@@ -451,6 +511,12 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Name;
         private System.Windows.Forms.DataGridViewTextBoxColumn Type;
         private System.Windows.Forms.DataGridViewTextBoxColumn ID;
+        private System.Windows.Forms.TextBox FileSize;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel4;
+        private System.Windows.Forms.ToolStripStatusLabel diskSpace;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel5;
+        private System.Windows.Forms.ToolStripStatusLabel freedDiskSpace;
     }
 }
 
