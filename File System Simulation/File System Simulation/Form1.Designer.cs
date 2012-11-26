@@ -53,6 +53,10 @@
             this.totalfolders = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel3 = new System.Windows.Forms.ToolStripStatusLabel();
             this.totalfiles = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripStatusLabel4 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.diskSpace = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripStatusLabel5 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.freedDiskSpace = new System.Windows.Forms.ToolStripStatusLabel();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.createFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -63,10 +67,6 @@
             this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.FileSize = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
-            this.toolStripStatusLabel4 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.diskSpace = new System.Windows.Forms.ToolStripStatusLabel();
-            this.toolStripStatusLabel5 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.freedDiskSpace = new System.Windows.Forms.ToolStripStatusLabel();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ContentGrid)).BeginInit();
@@ -277,7 +277,7 @@
             this.freedDiskSpace});
             this.statusStrip1.Location = new System.Drawing.Point(0, 540);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(1065, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(853, 22);
             this.statusStrip1.TabIndex = 22;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -326,13 +326,44 @@
             this.totalfiles.Size = new System.Drawing.Size(19, 17);
             this.totalfiles.Text = "to";
             // 
+            // toolStripStatusLabel4
+            // 
+            this.toolStripStatusLabel4.ForeColor = System.Drawing.Color.Maroon;
+            this.toolStripStatusLabel4.Name = "toolStripStatusLabel4";
+            this.toolStripStatusLabel4.Size = new System.Drawing.Size(66, 17);
+            this.toolStripStatusLabel4.Text = "Disk Space:";
+            this.toolStripStatusLabel4.Click += new System.EventHandler(this.toolStripStatusLabel4_Click);
+            // 
+            // diskSpace
+            // 
+            this.diskSpace.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.diskSpace.ForeColor = System.Drawing.Color.Red;
+            this.diskSpace.Name = "diskSpace";
+            this.diskSpace.Size = new System.Drawing.Size(19, 17);
+            this.diskSpace.Text = "to";
+            // 
+            // toolStripStatusLabel5
+            // 
+            this.toolStripStatusLabel5.ForeColor = System.Drawing.Color.Maroon;
+            this.toolStripStatusLabel5.Name = "toolStripStatusLabel5";
+            this.toolStripStatusLabel5.Size = new System.Drawing.Size(91, 17);
+            this.toolStripStatusLabel5.Text = "Free Disk Space:";
+            // 
+            // freedDiskSpace
+            // 
+            this.freedDiskSpace.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.freedDiskSpace.ForeColor = System.Drawing.Color.Red;
+            this.freedDiskSpace.Name = "freedDiskSpace";
+            this.freedDiskSpace.Size = new System.Drawing.Size(19, 17);
+            this.freedDiskSpace.Text = "to";
+            // 
             // menuStrip1
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1065, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(853, 24);
             this.menuStrip1.TabIndex = 24;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -403,42 +434,11 @@
             this.label7.TabIndex = 27;
             this.label7.Text = "Size:";
             // 
-            // toolStripStatusLabel4
-            // 
-            this.toolStripStatusLabel4.ForeColor = System.Drawing.Color.Maroon;
-            this.toolStripStatusLabel4.Name = "toolStripStatusLabel4";
-            this.toolStripStatusLabel4.Size = new System.Drawing.Size(66, 17);
-            this.toolStripStatusLabel4.Text = "Disk Space:";
-            this.toolStripStatusLabel4.Click += new System.EventHandler(this.toolStripStatusLabel4_Click);
-            // 
-            // diskSpace
-            // 
-            this.diskSpace.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.diskSpace.ForeColor = System.Drawing.Color.Red;
-            this.diskSpace.Name = "diskSpace";
-            this.diskSpace.Size = new System.Drawing.Size(19, 17);
-            this.diskSpace.Text = "to";
-            // 
-            // toolStripStatusLabel5
-            // 
-            this.toolStripStatusLabel5.ForeColor = System.Drawing.Color.Maroon;
-            this.toolStripStatusLabel5.Name = "toolStripStatusLabel5";
-            this.toolStripStatusLabel5.Size = new System.Drawing.Size(91, 17);
-            this.toolStripStatusLabel5.Text = "Free Disk Space:";
-            // 
-            // freedDiskSpace
-            // 
-            this.freedDiskSpace.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.freedDiskSpace.ForeColor = System.Drawing.Color.Red;
-            this.freedDiskSpace.Name = "freedDiskSpace";
-            this.freedDiskSpace.Size = new System.Drawing.Size(19, 17);
-            this.freedDiskSpace.Text = "to";
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1065, 562);
+            this.ClientSize = new System.Drawing.Size(853, 562);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.FileSize);
             this.Controls.Add(this.ContentGrid);
