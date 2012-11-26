@@ -206,6 +206,10 @@ namespace File_System_Simulation
         {
             return myDisk.getFreeBlocks();
         }
+        public string getFileData(int firstBlock, int blocksNumber)
+        {
+            return myDisk.getFileData(firstBlock,blocksNumber);
+        }
 
     }
 }

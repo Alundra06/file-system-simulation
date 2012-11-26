@@ -96,9 +96,9 @@ namespace File_System_Simulation
         }
         private void button1_Click(object sender, EventArgs e)
         {
-            //Close();
-            myTree.preorder_Traversal(myTree.getRootNode());
-            MessageBox.Show(myTree.traversal);
+            Close();
+           // myTree.preorder_Traversal(myTree.getRootNode());
+            //MessageBox.Show(myTree.traversal);
 
         }
 
@@ -140,23 +140,27 @@ namespace File_System_Simulation
 
         private void button2_Click_1(object sender, EventArgs e)
         {
+            int firstBlock=myTree.GetNode(Currentlocation.Text).Element.getFirstBlock();
+            int numberBlocks = myTree.GetNode(Currentlocation.Text).Element.getNumberofBlocks();
+            Filereading.Text = myTree.getFileData(firstBlock, numberBlocks);
+                //string all_nodes = "";
+            //foreach (Node node in myTree.get_All_Nodes()) // Loop through List with foreach
+            //{
 
-            string all_nodes = "";
-            foreach (Node node in myTree.get_All_Nodes()) // Loop through List with foreach
-            {
+            //    string parent = "";
+            //    if (node.Parent == null)
+            //        parent = "Null";
+            //    else
+            //        parent = node.Parent.Element.get_Name();
+            //    all_nodes += node.Element.get_Name() + "-" + node.Element.get_Filetype()+ "--"+parent +"--" + node.Element.get_ID() + "\n";
+            //    string[] row = { node.Element.get_Name(), node.Element.get_Filetype(), node.Element.get_ID()};
+            //    ContentGrid.Rows.Add(row);
+            //}
+            //Filereading.Text = all_nodes;
+            //FileView.Refresh();
+            //Fill_Mytree();
 
-                string parent = "";
-                if (node.Parent == null)
-                    parent = "Null";
-                else
-                    parent = node.Parent.Element.get_Name();
-                all_nodes += node.Element.get_Name() + "-" + node.Element.get_Filetype()+ "--"+parent +"--" + node.Element.get_ID() + "\n";
-                string[] row = { node.Element.get_Name(), node.Element.get_Filetype(), node.Element.get_ID()};
-                ContentGrid.Rows.Add(row);
-            }
-            Filereading.Text = all_nodes;
-            FileView.Refresh();
-            Fill_Mytree();
+
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -249,6 +253,11 @@ namespace File_System_Simulation
            
             Currentlocation.Text = FileView.SelectedNode.FullPath;
             Get_FolderID();
+
+            // Get the content of the file:
+            int firstBlock = myTree.GetNode(Currentlocation.Text).Element.getFirstBlock();
+            int numberBlocks = myTree.GetNode(Currentlocation.Text).Element.getNumberofBlocks();
+            Filereading.Text = myTree.getFileData(firstBlock, numberBlocks);
         }
 
         private void button5_Click(object sender, EventArgs e)

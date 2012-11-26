@@ -59,6 +59,16 @@ namespace File_System_Simulation
             }
             return j ;
         }
+        public string getFileData(int firstBlock, int blocksNumber)
+        {
+            string Mydatafile=string.Empty;
+            for (int i = 1; i <= blocksNumber; i++)
+            {
+                Mydatafile+=diskBlock[firstBlock].getData();
+                firstBlock++;
+            }
+            return Mydatafile;
+        }
         
         public List<int>  getContiguousFreeblocks(int numberOfBlocks)
         {
