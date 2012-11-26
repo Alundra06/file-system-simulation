@@ -45,8 +45,28 @@ namespace File_System_Simulation
                 }
                 else
                 {
-                    my_file.Create_File(fileID,FileName.Text, "File", DateTime.Today.Date, 0, 0, "Hello People");
-                    myTree.Insert(my_file, CurrentFolder.Text);
+                    int i = Convert.ToInt32(FileSize.Text);
+                    int j = myTree.getDiskBlockSize();
+                    int result;
+                    int quotient = Math.DivRem(i, j, out result);
+                    if (result==0)
+                        i = quotient;
+                    else
+                        i = quotient + 1;
+                    //Check if we have enough blocks on the disk
+                    if (i > myTree.getFreeBlocks())
+                        MessageBox.Show("Disk is full please remove some files first");
+                    else
+                    {
+                        List<int> freeBlocks = myTree.getContiguousFreeblocks(i);
+                        if (freeBlocks.Count <= 0)
+                            MessageBox.Show("Cannot allocate contiguous blocks for your file");
+                        else
+                        {
+                            my_file.Create_File(fileID, FileName.Text, "File", DateTime.Today.Date, Convert.ToDouble(FileSize.Text), freeBlocks[0], i);
+                            myTree.Insert(my_file, CurrentFolder.Text, "This is the data for the file");
+                        }
+                    }
 
                 }
 
@@ -71,6 +91,8 @@ namespace File_System_Simulation
             totalElements.Text = myTree.get_Count().ToString();
             totalfolders.Text = myTree.getFoldersNumber().ToString();
             totalfiles.Text = myTree.getFilesNumber().ToString();
+            diskSpace.Text = myTree.getDiskSize().ToString();
+            freedDiskSpace.Text = myTree.getFreeSpace().ToString();
         }
         private void button1_Click(object sender, EventArgs e)
         {
@@ -153,8 +175,8 @@ namespace File_System_Simulation
             else
             {
                 
-                my_file.Create_File(fileID,Foldername.Text, "Folder", DateTime.Today.Date, 0, 0, "");
-                myTree.Insert(my_file, CurrentFolder.Text);
+                my_file.Create_File(fileID,Foldername.Text, "Folder", DateTime.Today.Date,0, -1, 0);
+                myTree.Insert(my_file, CurrentFolder.Text,"");
 
             }
             Fill_Mytree();
@@ -234,42 +256,47 @@ namespace File_System_Simulation
 
 
 
-            for (int i = 1; i < 100; i++)
-            {
-                string random = System.IO.Path.GetRandomFileName().Replace(".", string.Empty);
-                File my_file = new File();
-                string fileID = CurrentFolder.Text + "\\" + FileName.Text;
-                my_file.Create_File(fileID,random, "File", DateTime.Today.Date, 0, 0, "Hello People");
-                myTree.Insert(my_file, CurrentFolder.Text);
-            }
+            //for (int i = 1; i < 100; i++)
+            //{
+            //    string random = System.IO.Path.GetRandomFileName().Replace(".", string.Empty);
+            //    File my_file = new File();
+            //    string fileID = CurrentFolder.Text + "\\" + FileName.Text;
+            //    my_file.Create_File(fileID,random, "File", DateTime.Today.Date);
+            //    myTree.Insert(my_file, CurrentFolder.Text);
+            //}
             
-            Fill_Mytree();
-            UpdateStatusbar(); 
+            //Fill_Mytree();
+            //UpdateStatusbar(); 
         }
 
         private void create100RandomFilesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            for (int i = 1; i < 100; i++)
-            {
-                string random = System.IO.Path.GetRandomFileName().Replace(".", string.Empty);
-                File my_file = new File();
-                //string fileID = CurrentFolder.Text + "\\" + random;
-                string fileID;
-                if (CurrentFolder.Text == "Root:\\")
-                    fileID = CurrentFolder.Text + random;
-                else
-                    fileID = CurrentFolder.Text + "\\" + random;
-                my_file.Create_File(fileID,random, "File", DateTime.Today.Date, 0, 0, "Hello People");
-                myTree.Insert(my_file, CurrentFolder.Text);
-            }
+            //for (int i = 1; i < 100; i++)
+            //{
+            //    string random = System.IO.Path.GetRandomFileName().Replace(".", string.Empty);
+            //    File my_file = new File();
+            //    //string fileID = CurrentFolder.Text + "\\" + random;
+            //    string fileID;
+            //    if (CurrentFolder.Text == "Root:\\")
+            //        fileID = CurrentFolder.Text + random;
+            //    else
+            //        fileID = CurrentFolder.Text + "\\" + random;
+            //    my_file.Create_File(fileID,random, "File", DateTime.Today.Date, 0, 0, "Hello People");
+            //    myTree.Insert(my_file, CurrentFolder.Text);
+            //}
 
-            Fill_Mytree();
-            UpdateStatusbar(); 
+            //Fill_Mytree();
+            //UpdateStatusbar(); 
         }
 
         private void createFileToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.CreateFiles_Click(sender,e);
+        }
+
+        private void toolStripStatusLabel4_Click(object sender, EventArgs e)
+        {
+
         }
         
 
