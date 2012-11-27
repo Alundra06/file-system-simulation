@@ -59,6 +59,10 @@ namespace File_System_Simulation
             }
             return j ;
         }
+        public List<Block> getAllBlocks()
+        {
+            return diskBlock;
+        }
         public string getFileData(int firstBlock, int blocksNumber)
         {
             string Mydatafile=string.Empty;
@@ -107,12 +111,12 @@ namespace File_System_Simulation
             return availableBlocks;
         }
 
-        public void writeDataToBlocks(int firstBlock, int blocksNumber,string data)
+        public void writeContiguousDataToBlocks(int firstBlock, int blocksNumber,string data,Boolean type)
         {
             for (int i = 1; i <= blocksNumber;i++ )
             {
                 diskBlock[firstBlock].setData(data);
-                diskBlock[firstBlock].setCurrentStatus(false);
+                diskBlock[firstBlock].setCurrentStatus(type);
                 firstBlock++;
             }
         }

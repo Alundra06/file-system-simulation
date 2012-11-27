@@ -62,11 +62,11 @@
             this.createFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.create100RandomFilesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ContentGrid = new System.Windows.Forms.DataGridView();
-            this.Name = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Type = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.FileSize = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
+            this.index = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Status = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Data = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ContentGrid)).BeginInit();
@@ -87,15 +87,15 @@
             // 
             this.FileView.Location = new System.Drawing.Point(177, 89);
             this.FileView.Name = "FileView";
-            this.FileView.Size = new System.Drawing.Size(302, 315);
+            this.FileView.Size = new System.Drawing.Size(256, 315);
             this.FileView.TabIndex = 1;
             this.FileView.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.FileView_AfterSelect);
             // 
             // Filereading
             // 
-            this.Filereading.Location = new System.Drawing.Point(496, 87);
+            this.Filereading.Location = new System.Drawing.Point(439, 89);
             this.Filereading.Name = "Filereading";
-            this.Filereading.Size = new System.Drawing.Size(341, 160);
+            this.Filereading.Size = new System.Drawing.Size(351, 160);
             this.Filereading.TabIndex = 4;
             this.Filereading.Text = "";
             this.Filereading.TextChanged += new System.EventHandler(this.Filereading_TextChanged);
@@ -116,7 +116,7 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            this.label3.Location = new System.Drawing.Point(626, 71);
+            this.label3.Location = new System.Drawing.Point(551, 71);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(127, 16);
             this.label3.TabIndex = 6;
@@ -127,18 +127,19 @@
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            this.label4.Location = new System.Drawing.Point(617, 301);
+            this.label4.Location = new System.Drawing.Point(544, 252);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(94, 16);
+            this.label4.Size = new System.Drawing.Size(134, 16);
             this.label4.TabIndex = 8;
-            this.label4.Text = "Raw Content";
+            this.label4.Text = "Disk blocks status";
+            this.label4.Click += new System.EventHandler(this.label4_Click);
             // 
             // label5
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            this.label5.Location = new System.Drawing.Point(174, 424);
+            this.label5.Location = new System.Drawing.Point(128, 411);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(109, 15);
             this.label5.TabIndex = 10;
@@ -146,7 +147,7 @@
             // 
             // Currentlocation
             // 
-            this.Currentlocation.Location = new System.Drawing.Point(306, 423);
+            this.Currentlocation.Location = new System.Drawing.Point(260, 410);
             this.Currentlocation.Name = "Currentlocation";
             this.Currentlocation.ReadOnly = true;
             this.Currentlocation.Size = new System.Drawing.Size(173, 20);
@@ -154,7 +155,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(739, 486);
+            this.button1.Location = new System.Drawing.Point(11, 514);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 12;
@@ -172,7 +173,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(620, 253);
+            this.button2.Location = new System.Drawing.Point(11, 332);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(133, 23);
             this.button2.TabIndex = 14;
@@ -199,6 +200,7 @@
             this.button4.Text = "Delete folder";
             this.button4.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // b_Create_Folder
             // 
@@ -227,6 +229,7 @@
             this.DeleteFiles.Text = "Delete file";
             this.DeleteFiles.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.DeleteFiles.UseVisualStyleBackColor = true;
+            this.DeleteFiles.Click += new System.EventHandler(this.DeleteFiles_Click);
             // 
             // CreateFiles
             // 
@@ -245,7 +248,7 @@
             // 
             // CurrentFolder
             // 
-            this.CurrentFolder.Location = new System.Drawing.Point(306, 446);
+            this.CurrentFolder.Location = new System.Drawing.Point(260, 433);
             this.CurrentFolder.Name = "CurrentFolder";
             this.CurrentFolder.ReadOnly = true;
             this.CurrentFolder.Size = new System.Drawing.Size(173, 20);
@@ -256,7 +259,7 @@
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            this.label6.Location = new System.Drawing.Point(174, 446);
+            this.label6.Location = new System.Drawing.Point(128, 433);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(99, 15);
             this.label6.TabIndex = 19;
@@ -275,9 +278,9 @@
             this.diskSpace,
             this.toolStripStatusLabel5,
             this.freedDiskSpace});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 540);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 588);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(853, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(818, 22);
             this.statusStrip1.TabIndex = 22;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -363,7 +366,7 @@
             this.fileToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(853, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(818, 24);
             this.menuStrip1.TabIndex = 24;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -394,28 +397,14 @@
             // 
             this.ContentGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.ContentGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Name,
-            this.Type,
-            this.ID});
-            this.ContentGrid.Location = new System.Drawing.Point(496, 320);
+            this.index,
+            this.Status,
+            this.Data});
+            this.ContentGrid.Location = new System.Drawing.Point(439, 271);
             this.ContentGrid.Name = "ContentGrid";
-            this.ContentGrid.Size = new System.Drawing.Size(341, 150);
+            this.ContentGrid.Size = new System.Drawing.Size(351, 301);
             this.ContentGrid.TabIndex = 25;
-            // 
-            // Name
-            // 
-            this.Name.HeaderText = "Name";
-            this.Name.Name = "Name";
-            // 
-            // Type
-            // 
-            this.Type.HeaderText = "Type";
-            this.Type.Name = "Type";
-            // 
-            // ID
-            // 
-            this.ID.HeaderText = "ID";
-            this.ID.Name = "ID";
+            this.ContentGrid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.ContentGrid_CellContentClick);
             // 
             // FileSize
             // 
@@ -434,11 +423,26 @@
             this.label7.TabIndex = 27;
             this.label7.Text = "Size:";
             // 
+            // index
+            // 
+            this.index.HeaderText = "Index";
+            this.index.Name = "index";
+            // 
+            // Status
+            // 
+            this.Status.HeaderText = "Status";
+            this.Status.Name = "Status";
+            // 
+            // Data
+            // 
+            this.Data.HeaderText = "Data";
+            this.Data.Name = "Data";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(853, 562);
+            this.ClientSize = new System.Drawing.Size(818, 610);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.FileSize);
             this.Controls.Add(this.ContentGrid);
@@ -463,7 +467,7 @@
             this.Controls.Add(this.CreateFiles);
             this.Controls.Add(this.FileView);
             this.MainMenuStrip = this.menuStrip1;
-            //this.Name = "Form1";
+            this.Name = "Form1";
             this.Text = "File System Simulation";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.statusStrip1.ResumeLayout(false);
@@ -508,15 +512,15 @@
         private System.Windows.Forms.ToolStripMenuItem create100RandomFilesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem createFileToolStripMenuItem;
         private System.Windows.Forms.DataGridView ContentGrid;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Name;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Type;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ID;
         private System.Windows.Forms.TextBox FileSize;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel4;
         private System.Windows.Forms.ToolStripStatusLabel diskSpace;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel5;
         private System.Windows.Forms.ToolStripStatusLabel freedDiskSpace;
+        private System.Windows.Forms.DataGridViewTextBoxColumn index;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Status;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Data;
     }
 }
 
