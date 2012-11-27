@@ -59,7 +59,7 @@ namespace File_System_Simulation
                     else
                     {
                         List<int> freeBlocks = myTree.getContiguousFreeblocks(i);
-                        if (freeBlocks.Count <= 0)
+                        if (freeBlocks.Count < i )//Check if the returned free blocks are smaller than the contiguous block needed.
                             MessageBox.Show("Cannot allocate contiguous blocks for your file");
                         else
                         {
@@ -72,7 +72,8 @@ namespace File_System_Simulation
 
             }
             Fill_Mytree();
-            UpdateStatusbar(); 
+            UpdateStatusbar();
+            
         }
 
         private void Filereading_TextChanged(object sender, EventArgs e)
@@ -93,6 +94,7 @@ namespace File_System_Simulation
             totalfiles.Text = myTree.getFilesNumber().ToString();
             diskSpace.Text = myTree.getDiskSize().ToString();
             freedDiskSpace.Text = myTree.getFreeSpace().ToString();
+            displayDiskBlocks();
         }
         private void button1_Click(object sender, EventArgs e)
         {
@@ -140,27 +142,33 @@ namespace File_System_Simulation
 
         private void button2_Click_1(object sender, EventArgs e)
         {
-            int firstBlock=myTree.GetNode(Currentlocation.Text).Element.getFirstBlock();
-            int numberBlocks = myTree.GetNode(Currentlocation.Text).Element.getNumberofBlocks();
-            Filereading.Text = myTree.getFileData(firstBlock, numberBlocks);
-                //string all_nodes = "";
-            //foreach (Node node in myTree.get_All_Nodes()) // Loop through List with foreach
-            //{
-
-            //    string parent = "";
-            //    if (node.Parent == null)
-            //        parent = "Null";
-            //    else
-            //        parent = node.Parent.Element.get_Name();
-            //    all_nodes += node.Element.get_Name() + "-" + node.Element.get_Filetype()+ "--"+parent +"--" + node.Element.get_ID() + "\n";
-            //    string[] row = { node.Element.get_Name(), node.Element.get_Filetype(), node.Element.get_ID()};
-            //    ContentGrid.Rows.Add(row);
-            //}
+            MessageBox.Show(myTree.GetNode(Currentlocation.Text).NextSibling.Element.get_Name().ToString());
             //Filereading.Text = all_nodes;
             //FileView.Refresh();
             //Fill_Mytree();
+            //string parent = "";
+            //if (node.Parent == null)
+            //    parent = "Null";
+            //else
+            //    parent = node.Parent.Element.get_Name();
+            //all_nodes += node.Element.get_Name() + "-" + node.Element.get_Filetype() + "--" + parent + "--" + node.Element.get_ID() + "\n";
+            //string[] row = { node.Element.get_Name(), node.Element.get_Filetype(), node.Element.get_ID() };
+            //ContentGrid.Rows.Add(row);
 
 
+        }
+
+        private void displayDiskBlocks()
+        {
+            ContentGrid.Rows.Clear();
+            int i = 0;
+            //string all_nodes = "";
+            foreach (Block block in myTree.getAllBlocks()) // Loop through List with foreach
+            {
+                string[] row = { i.ToString(), block.getCurrentStatus().ToString(), block.getData() };
+                ContentGrid.Rows.Add(row);
+                i++;
+            }
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -304,6 +312,37 @@ namespace File_System_Simulation
         }
 
         private void toolStripStatusLabel4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ContentGrid_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void DeleteFiles_Click(object sender, EventArgs e)
+        {
+            if (myTree.GetNode(Currentlocation.Text).Element.get_Filetype() == "File")
+            {
+                myTree.deleteFile(myTree.GetNode(Currentlocation.Text));
+                UpdateStatusbar();
+                FileView.Nodes.Clear();
+                Fill_Mytree();
+                FileView.CollapseAll();
+            }
+            else
+            {
+                MessageBox.Show("Please select a valid file");
+            }
+        }
+
+        private void button4_Click(object sender, EventArgs e)
         {
 
         }

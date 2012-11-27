@@ -16,6 +16,10 @@ namespace File_System_Simulation
         
 
         private string filepath = "";
+        
+        private Node lastNode = null;
+        private Node previousNode = null;
+        
         //Constructor
         public FileSimulator()
         {
@@ -58,16 +62,85 @@ namespace File_System_Simulation
             Node newNode = new Node();
             newNode.Element = Myfile;
             newNode.FirstChild = null;
+            newNode.NextSibling = null;
             Node parent = MyNodes[get_Index(ParentID)];
             newNode.Parent = parent;
+            //if the parent does have at least a child please adjust the siblings
+            if (parent.FirstChild != null)
+                getLastSibling(parent.FirstChild).NextSibling = newNode;
            //Set the connection between the this node and it's parent
-            if (parent.FirstChild == null) 
+            else //if (parent.FirstChild == null) 
                 parent.FirstChild = newNode;
+
             MyNodes.Add(newNode);
             if(Myfile.get_Filetype() == "File")
-            myDisk.writeDataToBlocks(Myfile.getFirstBlock(), Myfile.getNumberofBlocks(), fileData);
+            myDisk.writeContiguousDataToBlocks(Myfile.getFirstBlock(), Myfile.getNumberofBlocks(), fileData,false);            
+        }
 
-            
+        public void deleteFile(Node myfile)
+        {
+            //delete Data first from the disk
+            myDisk.writeContiguousDataToBlocks(myfile.Element.getFirstBlock(), myfile.Element.getNumberofBlocks(),string.Empty,true);
+            //remap the tress
+            relocateRemovedSibling(myfile);
+            MyNodes.Remove(myfile);
+        }
+        public void deleteFolder(Node myFolder)
+        {
+           
+        }
+        
+        
+        private Node getLastSibling(Node childNode)
+        {
+            //Node lastSibling=null;
+            if (childNode.NextSibling != null)
+            {
+                getLastSibling(childNode.NextSibling);
+            }
+            else
+            {
+                lastNode = childNode;
+            }
+            return lastNode;
+         
+        }
+
+        private Node getPreviousSibling(Node firstChildNode,Node MyNode)
+        {
+            if (firstChildNode.NextSibling != MyNode)
+            {
+                getPreviousSibling(firstChildNode.NextSibling,MyNode);
+            }
+            else
+            {
+                previousNode = firstChildNode;
+            }
+            return previousNode;
+
+        }
+        private void relocateRemovedSibling(Node myNode)
+        {
+            //Check if the node is the first child
+            if (myNode == myNode.Parent.FirstChild)
+            {
+                //check if the node has a sibling
+                if (myNode.NextSibling == null)
+                    myNode.Parent.FirstChild = null;//If No remove the first child from th eparent
+                else
+                    myNode.Parent.FirstChild = myNode.NextSibling;//if Yes change the first child to the next sibling
+            }
+            else //If it's not the first child
+            {
+                //check if it's has NO sibling
+                if (myNode.NextSibling == null)
+                    //Make the previous node nextchild=NULL
+                    getPreviousSibling(myNode.Parent.FirstChild, myNode).NextSibling = null;
+                else
+                    getPreviousSibling(myNode.Parent.FirstChild, myNode).NextSibling = myNode.NextSibling;
+
+            }
+
         }
         public int get_Index(string fileID)
         {
@@ -210,6 +283,11 @@ namespace File_System_Simulation
         {
             return myDisk.getFileData(firstBlock,blocksNumber);
         }
+        public List<Block> getAllBlocks()
+        {
+            return myDisk.getAllBlocks();
+        }
+
 
     }
 }
