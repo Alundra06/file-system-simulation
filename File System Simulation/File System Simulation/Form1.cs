@@ -19,7 +19,6 @@ namespace File_System_Simulation
             Fill_Mytree();
 
         }
-
         private void CreateFiles_Click(object sender, EventArgs e)
         {
             if (FileName.Text.Length == 0)
@@ -75,18 +74,15 @@ namespace File_System_Simulation
             UpdateStatusbar();
             
         }
-
         private void Filereading_TextChanged(object sender, EventArgs e)
         {
 
         }
-
         private void Form1_Load(object sender, EventArgs e)
         {
             UpdateStatusbar();
             CurrentFolder.Text = "Root:\\";
         }
-
         private void UpdateStatusbar()
         {
             totalElements.Text = myTree.get_Count().ToString();
@@ -103,7 +99,6 @@ namespace File_System_Simulation
             //MessageBox.Show(myTree.traversal);
 
         }
-
         private void Get_current_Folder()
         {
             string[] split = Currentlocation.Text.Split(new Char[] { '\\', ':' });
@@ -134,12 +129,10 @@ namespace File_System_Simulation
             }
             //CurrentFolder.Text = "";
         }
-
         private void FileName_TextChanged(object sender, EventArgs e)
         {
            // FileName.BackColor = Color.White;
         }
-
         private void button2_Click_1(object sender, EventArgs e)
         {
             MessageBox.Show(myTree.GetNode(Currentlocation.Text).NextSibling.Element.get_Name().ToString());
@@ -157,7 +150,6 @@ namespace File_System_Simulation
 
 
         }
-
         private void displayDiskBlocks()
         {
             ContentGrid.Rows.Clear();
@@ -170,7 +162,6 @@ namespace File_System_Simulation
                 i++;
             }
         }
-
         private void button3_Click(object sender, EventArgs e)
         {
             File my_file = new File();
@@ -194,8 +185,6 @@ namespace File_System_Simulation
             Fill_Mytree();
             UpdateStatusbar();    
         }
-
-
         private void Fill_Mytree()
         {
 
@@ -224,7 +213,6 @@ namespace File_System_Simulation
            
           
         }
-
         //Source code for this function was copied from:
         //http://stackoverflow.com/questions/673931/file-system-treeview/674119#674119
         private static void PopulateTreeView(TreeView treeView, IEnumerable<string> paths, char pathSeparator)
@@ -253,9 +241,6 @@ namespace File_System_Simulation
                 }
             }
         }
-       
-       
-
         private void FileView_AfterSelect(object sender, TreeViewEventArgs e)
         {
            
@@ -267,7 +252,6 @@ namespace File_System_Simulation
             int numberBlocks = myTree.GetNode(Currentlocation.Text).Element.getNumberofBlocks();
             Filereading.Text = myTree.getFileData(firstBlock, numberBlocks);
         }
-
         private void button5_Click(object sender, EventArgs e)
         {
 
@@ -285,7 +269,6 @@ namespace File_System_Simulation
             //Fill_Mytree();
             //UpdateStatusbar(); 
         }
-
         private void create100RandomFilesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             //for (int i = 1; i < 100; i++)
@@ -304,28 +287,65 @@ namespace File_System_Simulation
 
             //Fill_Mytree();
             //UpdateStatusbar(); 
-        }
 
+            File my_file = new File();
+                string fileID ;
+                if ( CurrentFolder.Text =="Root:\\")
+                    fileID =  CurrentFolder.Text  + FileName.Text;
+                else
+                    fileID = CurrentFolder.Text  + "\\" + FileName.Text;
+
+                if (myTree.file_exists(fileID))
+                {
+                    MessageBox.Show("The file exists already");
+                }
+                else
+                {
+                    int i = Convert.ToInt32(FileSize.Text);
+                    int j = myTree.getDiskBlockSize();
+                    int result;
+                    int quotient = Math.DivRem(i, j, out result);
+                    if (result==0)
+                        i = quotient;
+                    else
+                        i = quotient + 1;
+                    //Check if we have enough blocks on the disk
+                    if (i > myTree.getFreeBlocks())
+                        MessageBox.Show("Disk is full please remove some files first");
+                    else
+                    {
+                        List<int> freeBlocks = myTree.getContiguousFreeblocks(i);
+                        if (freeBlocks.Count < i )//Check if the returned free blocks are smaller than the contiguous block needed.
+                            MessageBox.Show("Cannot allocate contiguous blocks for your file");
+                        else
+                        {
+                            my_file.Create_File(fileID, FileName.Text, "File", DateTime.Today.Date, Convert.ToDouble(FileSize.Text), freeBlocks[0], i);
+                            myTree.Insert(my_file, CurrentFolder.Text, "This is the data for the file");
+                        }
+                    }
+
+
+
+
+
+
+        }
         private void createFileToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.CreateFiles_Click(sender,e);
         }
-
         private void toolStripStatusLabel4_Click(object sender, EventArgs e)
         {
 
         }
-
         private void label4_Click(object sender, EventArgs e)
         {
 
         }
-
         private void ContentGrid_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
         }
-
         private void DeleteFiles_Click(object sender, EventArgs e)
         {
             if (myTree.GetNode(Currentlocation.Text).Element.get_Filetype() == "File")
@@ -341,14 +361,25 @@ namespace File_System_Simulation
                 MessageBox.Show("Please select a valid file");
             }
         }
-
         private void button4_Click(object sender, EventArgs e)
         {
-
+            if (CurrentFolder.Text == "Root:\\")
+                MessageBox.Show("You cannot delete the root");
+            else
+            {
+                if (myTree.GetNode(Currentlocation.Text).Element.get_Filetype() == "Folder")
+                {
+                    myTree.deleteFolder(myTree.GetNode(CurrentFolder.Text));
+                    UpdateStatusbar();
+                    FileView.Nodes.Clear();
+                    Fill_Mytree();
+                    FileView.CollapseAll();
+                }
+                else
+                {
+                    MessageBox.Show("Please select a valid folder");
+                }
+            }
         }
-        
-
-       
-      
     }
 }
