@@ -13,13 +13,10 @@ namespace File_System_Simulation
         private static DiskBlocks myDisk = new DiskBlocks(diskSize, diskBlock);
         //The root node
         private Node root;
-        
-
         private string filepath = "";
-        
         private Node lastNode = null;
         private Node previousNode = null;
-        
+        private Node tempNode = null;
         //Constructor
         public FileSimulator()
         {
@@ -41,7 +38,6 @@ namespace File_System_Simulation
         {
             return MyNodes.Count;
         }
-       
         public void preorder_Traversal(Node root)
         {
             //this.root = root;
@@ -53,8 +49,6 @@ namespace File_System_Simulation
             }
             
         }
-        
-        
         public void Insert(File Myfile,string ParentID,string fileData)
         {
 
@@ -76,7 +70,6 @@ namespace File_System_Simulation
             if(Myfile.get_Filetype() == "File")
             myDisk.writeContiguousDataToBlocks(Myfile.getFirstBlock(), Myfile.getNumberofBlocks(), fileData,false);            
         }
-
         public void deleteFile(Node myfile)
         {
             //delete Data first from the disk
@@ -85,12 +78,57 @@ namespace File_System_Simulation
             relocateRemovedSibling(myfile);
             MyNodes.Remove(myfile);
         }
+        private void removeSubFolders(Node myFolder)
+        {
+            if (myFolder.FirstChild != null)
+            {
+                if (myFolder.FirstChild.FirstChild != null)
+                {
+                    removeSubFolders(myFolder.FirstChild);
+                }
+                else
+                {
+                    deleteFile(myFolder.FirstChild);
+                    removeSubFolders(myFolder);
+                }
+            }
+            else
+            {
+                //check if the current node is the first node calling the function
+                if (myFolder != tempNode)
+                {
+                    Node mynode = myFolder;
+                    deleteFile(myFolder);
+                    removeSubFolders(mynode.Parent);
+                }
+            }
+
+        }
+
+        
         public void deleteFolder(Node myFolder)
         {
+            if (myFolder.FirstChild == null) //if the folder doesn't have subfolders
+            {
+                if (myFolder.NextSibling == null)
+                    myFolder.Parent.FirstChild = null;
+                else
+                {
+                    myFolder.Parent.FirstChild = myFolder.NextSibling;
+                }
+                
+            }
+            else //if the folder has  subfolders
+            {
+                tempNode = myFolder;
+                removeSubFolders(myFolder);
+            }
+            
+            //delete the folder after deleting all the sublings
+            deleteFile(myFolder);
+
            
         }
-        
-        
         private Node getLastSibling(Node childNode)
         {
             //Node lastSibling=null;
@@ -105,7 +143,6 @@ namespace File_System_Simulation
             return lastNode;
          
         }
-
         private Node getPreviousSibling(Node firstChildNode,Node MyNode)
         {
             if (firstChildNode.NextSibling != MyNode)
@@ -217,7 +254,6 @@ namespace File_System_Simulation
                 return false;
 
         }
-       
         public Boolean isFolder(string fileID)
         {
             Boolean isfolder= false;
@@ -227,7 +263,6 @@ namespace File_System_Simulation
             }
             return isfolder;
         }
-         
          public void resetFilepath()
          {
              filepath = "";
@@ -253,7 +288,6 @@ namespace File_System_Simulation
 
             return node.Parent.Element.get_ID();
         }
-
         ///////Disk Simulator methods calls//////////////////
         /// <summary>
         /// ///////////////////////////

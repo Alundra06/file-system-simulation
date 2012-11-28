@@ -73,7 +73,6 @@ namespace File_System_Simulation
             }
             return Mydatafile;
         }
-        
         public List<int>  getContiguousFreeblocks(int numberOfBlocks)
         {
             //to hold the list of indexes
@@ -110,7 +109,6 @@ namespace File_System_Simulation
 
             return availableBlocks;
         }
-
         public void writeContiguousDataToBlocks(int firstBlock, int blocksNumber,string data,Boolean type)
         {
             for (int i = 1; i <= blocksNumber;i++ )
