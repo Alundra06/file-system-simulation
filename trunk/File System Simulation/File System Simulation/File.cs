@@ -89,6 +89,10 @@ namespace File_System_Simulation
         {
             return this.numberBlocks;
         }
+        public double getFileSize()
+        {
+            return this.size;
+        }
         
     }
 }

@@ -24,7 +24,6 @@ namespace File_System_Simulation
             if (FileName.Text.Length == 0)
             {
                 MessageBox.Show("Please insert a valid file name");
-                FileName.BackColor = Color.Red;
             }
 
             else
@@ -63,7 +62,9 @@ namespace File_System_Simulation
                         else
                         {
                             my_file.Create_File(fileID, FileName.Text, "File", DateTime.Today.Date, Convert.ToDouble(FileSize.Text), freeBlocks[0], i);
-                            myTree.Insert(my_file, CurrentFolder.Text, "This is the data for the file");
+                            //Create random data to add to the file:
+                            string randomFileData = System.IO.Path.GetRandomFileName();
+                            myTree.Insert(my_file, CurrentFolder.Text, randomFileData);
                         }
                     }
 
@@ -243,7 +244,11 @@ namespace File_System_Simulation
         }
         private void FileView_AfterSelect(object sender, TreeViewEventArgs e)
         {
-           
+
+            for (int n = 0; n < ContentGrid.RowCount; n++)
+            {
+                ContentGrid.Rows[n].DefaultCellStyle.BackColor = Color.White;
+            }
             Currentlocation.Text = FileView.SelectedNode.FullPath;
             Get_FolderID();
 
@@ -251,6 +256,17 @@ namespace File_System_Simulation
             int firstBlock = myTree.GetNode(Currentlocation.Text).Element.getFirstBlock();
             int numberBlocks = myTree.GetNode(Currentlocation.Text).Element.getNumberofBlocks();
             Filereading.Text = myTree.getFileData(firstBlock, numberBlocks);
+            //Get the file size
+            lFileSize.Text = myTree.GetNode(Currentlocation.Text).Element.getFileSize().ToString();
+
+            //change the color of the reserved blocks
+            int k = myTree.GetNode(Currentlocation.Text).Element.getFirstBlock();
+            int j = myTree.GetNode(Currentlocation.Text).Element.getNumberofBlocks();
+            for (int i = 0; i < j; i++)
+            {
+                ContentGrid.Rows[k].DefaultCellStyle.BackColor = Color.GreenYellow;
+                k++;
+            }
         }
         private void button5_Click(object sender, EventArgs e)
         {
@@ -271,29 +287,18 @@ namespace File_System_Simulation
         }
         private void create100RandomFilesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //for (int i = 1; i < 100; i++)
-            //{
-            //    string random = System.IO.Path.GetRandomFileName().Replace(".", string.Empty);
-            //    File my_file = new File();
-            //    //string fileID = CurrentFolder.Text + "\\" + random;
-            //    string fileID;
-            //    if (CurrentFolder.Text == "Root:\\")
-            //        fileID = CurrentFolder.Text + random;
-            //    else
-            //        fileID = CurrentFolder.Text + "\\" + random;
-            //    my_file.Create_File(fileID,random, "File", DateTime.Today.Date, 0, 0, "Hello People");
-            //    myTree.Insert(my_file, CurrentFolder.Text);
-            //}
+            Random randomSize = new Random();
+            for (int ii = 1; ii < 10; ii++)
+            {
 
-            //Fill_Mytree();
-            //UpdateStatusbar(); 
-
-            File my_file = new File();
-                string fileID ;
-                if ( CurrentFolder.Text =="Root:\\")
-                    fileID =  CurrentFolder.Text  + FileName.Text;
+                
+                string randomFileName = System.IO.Path.GetRandomFileName().Replace(".", string.Empty);
+                File my_file = new File();
+                string fileID;
+                if (CurrentFolder.Text == "Root:\\")
+                    fileID = CurrentFolder.Text + randomFileName;
                 else
-                    fileID = CurrentFolder.Text  + "\\" + FileName.Text;
+                    fileID = CurrentFolder.Text + "\\" + randomFileName;
 
                 if (myTree.file_exists(fileID))
                 {
@@ -301,11 +306,13 @@ namespace File_System_Simulation
                 }
                 else
                 {
-                    int i = Convert.ToInt32(FileSize.Text);
+                    int randomFileSize = randomSize.Next(100);
+                    //MessageBox.Show(randomFileSize.ToString());
+                    int i = randomFileSize;
                     int j = myTree.getDiskBlockSize();
                     int result;
                     int quotient = Math.DivRem(i, j, out result);
-                    if (result==0)
+                    if (result == 0)
                         i = quotient;
                     else
                         i = quotient + 1;
@@ -315,20 +322,24 @@ namespace File_System_Simulation
                     else
                     {
                         List<int> freeBlocks = myTree.getContiguousFreeblocks(i);
-                        if (freeBlocks.Count < i )//Check if the returned free blocks are smaller than the contiguous block needed.
+                        if (freeBlocks.Count < i)//Check if the returned free blocks are smaller than the contiguous block needed.
                             MessageBox.Show("Cannot allocate contiguous blocks for your file");
                         else
                         {
-                            my_file.Create_File(fileID, FileName.Text, "File", DateTime.Today.Date, Convert.ToDouble(FileSize.Text), freeBlocks[0], i);
-                            myTree.Insert(my_file, CurrentFolder.Text, "This is the data for the file");
+                            my_file.Create_File(fileID, randomFileName, "File", DateTime.Today.Date, Convert.ToDouble(randomFileSize), freeBlocks[0], i);
+                            //Create random data to add to the file:
+                            string randomFileData = System.IO.Path.GetRandomFileName().Replace(".", string.Empty);
+                            myTree.Insert(my_file, CurrentFolder.Text, randomFileData);
                         }
                     }
+                }
 
 
 
 
-
-
+            }
+            Fill_Mytree();
+            UpdateStatusbar();
         }
         private void createFileToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -344,7 +355,7 @@ namespace File_System_Simulation
         }
         private void ContentGrid_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-
+            
         }
         private void DeleteFiles_Click(object sender, EventArgs e)
         {
