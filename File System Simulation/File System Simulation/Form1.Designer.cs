@@ -38,7 +38,6 @@
             this.Currentlocation = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
             this.FileName = new System.Windows.Forms.TextBox();
-            this.button2 = new System.Windows.Forms.Button();
             this.Foldername = new System.Windows.Forms.TextBox();
             this.button4 = new System.Windows.Forms.Button();
             this.b_Create_Folder = new System.Windows.Forms.Button();
@@ -62,11 +61,13 @@
             this.createFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.create100RandomFilesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ContentGrid = new System.Windows.Forms.DataGridView();
-            this.FileSize = new System.Windows.Forms.TextBox();
-            this.label7 = new System.Windows.Forms.Label();
             this.index = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Status = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Data = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.FileSize = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.lFileSize = new System.Windows.Forms.Label();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ContentGrid)).BeginInit();
@@ -95,7 +96,7 @@
             // 
             this.Filereading.Location = new System.Drawing.Point(439, 89);
             this.Filereading.Name = "Filereading";
-            this.Filereading.Size = new System.Drawing.Size(351, 160);
+            this.Filereading.Size = new System.Drawing.Size(351, 130);
             this.Filereading.TabIndex = 4;
             this.Filereading.Text = "";
             this.Filereading.TextChanged += new System.EventHandler(this.Filereading_TextChanged);
@@ -155,9 +156,9 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(11, 514);
+            this.button1.Location = new System.Drawing.Point(12, 342);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.Size = new System.Drawing.Size(121, 23);
             this.button1.TabIndex = 12;
             this.button1.Text = "Exit";
             this.button1.UseVisualStyleBackColor = true;
@@ -170,16 +171,6 @@
             this.FileName.Size = new System.Drawing.Size(118, 20);
             this.FileName.TabIndex = 13;
             this.FileName.TextChanged += new System.EventHandler(this.FileName_TextChanged);
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(11, 332);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(133, 23);
-            this.button2.TabIndex = 14;
-            this.button2.Text = "Save Updates";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click_1);
             // 
             // Foldername
             // 
@@ -278,7 +269,7 @@
             this.diskSpace,
             this.toolStripStatusLabel5,
             this.freedDiskSpace});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 588);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 597);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(818, 22);
             this.statusStrip1.TabIndex = 22;
@@ -389,8 +380,8 @@
             // create100RandomFilesToolStripMenuItem
             // 
             this.create100RandomFilesToolStripMenuItem.Name = "create100RandomFilesToolStripMenuItem";
-            this.create100RandomFilesToolStripMenuItem.Size = new System.Drawing.Size(198, 22);
-            this.create100RandomFilesToolStripMenuItem.Text = "Create 100 random files";
+            this.create100RandomFilesToolStripMenuItem.Size = new System.Drawing.Size(192, 22);
+            this.create100RandomFilesToolStripMenuItem.Text = "Create 10 random files";
             this.create100RandomFilesToolStripMenuItem.Click += new System.EventHandler(this.create100RandomFilesToolStripMenuItem_Click);
             // 
             // ContentGrid
@@ -405,6 +396,21 @@
             this.ContentGrid.Size = new System.Drawing.Size(351, 301);
             this.ContentGrid.TabIndex = 25;
             this.ContentGrid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.ContentGrid_CellContentClick);
+            // 
+            // index
+            // 
+            this.index.HeaderText = "Index";
+            this.index.Name = "index";
+            // 
+            // Status
+            // 
+            this.Status.HeaderText = "Status";
+            this.Status.Name = "Status";
+            // 
+            // Data
+            // 
+            this.Data.HeaderText = "Data";
+            this.Data.Name = "Data";
             // 
             // FileSize
             // 
@@ -423,26 +429,34 @@
             this.label7.TabIndex = 27;
             this.label7.Text = "Size:";
             // 
-            // index
+            // label8
             // 
-            this.index.HeaderText = "Index";
-            this.index.Name = "index";
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.label8.Location = new System.Drawing.Point(440, 222);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(72, 16);
+            this.label8.TabIndex = 28;
+            this.label8.Text = "File Size:";
             // 
-            // Status
+            // lFileSize
             // 
-            this.Status.HeaderText = "Status";
-            this.Status.Name = "Status";
-            // 
-            // Data
-            // 
-            this.Data.HeaderText = "Data";
-            this.Data.Name = "Data";
+            this.lFileSize.AutoSize = true;
+            this.lFileSize.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lFileSize.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.lFileSize.Location = new System.Drawing.Point(512, 222);
+            this.lFileSize.Name = "lFileSize";
+            this.lFileSize.Size = new System.Drawing.Size(0, 16);
+            this.lFileSize.TabIndex = 29;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(818, 610);
+            this.ClientSize = new System.Drawing.Size(818, 619);
+            this.Controls.Add(this.lFileSize);
+            this.Controls.Add(this.label8);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.FileSize);
             this.Controls.Add(this.ContentGrid);
@@ -454,7 +468,6 @@
             this.Controls.Add(this.button4);
             this.Controls.Add(this.Foldername);
             this.Controls.Add(this.b_Create_Folder);
-            this.Controls.Add(this.button2);
             this.Controls.Add(this.FileName);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.Currentlocation);
@@ -494,7 +507,6 @@
         private System.Windows.Forms.TextBox Currentlocation;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.TextBox FileName;
-        private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button b_Create_Folder;
         private System.Windows.Forms.TextBox Foldername;
         private System.Windows.Forms.Button button4;
@@ -521,6 +533,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn index;
         private System.Windows.Forms.DataGridViewTextBoxColumn Status;
         private System.Windows.Forms.DataGridViewTextBoxColumn Data;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label lFileSize;
     }
 }
 
