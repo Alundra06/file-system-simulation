@@ -8,11 +8,11 @@ using System.Collections;
 
 namespace File_System_Simulation
 {
-    public partial class Form1 : Form
+    public partial class Main : Form
     {
         //Initiate the tree data structure
         FileSimulator myTree = new FileSimulator();
-        public Form1()
+        public Main()
         {
             
             InitializeComponent();
