@@ -91,6 +91,7 @@ namespace File_System_Simulation
             totalfiles.Text = myTree.getFilesNumber().ToString();
             diskSpace.Text = myTree.getDiskSize().ToString();
             freedDiskSpace.Text = myTree.getFreeSpace().ToString();
+            blockSize.Text = myTree.get_blockSize().ToString();
             displayDiskBlocks();
         }
         private void button1_Click(object sender, EventArgs e)
@@ -288,7 +289,7 @@ namespace File_System_Simulation
         private void create100RandomFilesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Random randomSize = new Random();
-            for (int ii = 1; ii < 10; ii++)
+            for (int ii = 1; ii <= 10; ii++)
             {
 
                 
@@ -306,7 +307,8 @@ namespace File_System_Simulation
                 }
                 else
                 {
-                    int randomFileSize = randomSize.Next(100);
+                    int randomFileSize = randomSize.Next(Setup.DiskBlock*10)+1;
+                    
                     //MessageBox.Show(randomFileSize.ToString());
                     int i = randomFileSize;
                     int j = myTree.getDiskBlockSize();
@@ -391,6 +393,16 @@ namespace File_System_Simulation
                     MessageBox.Show("Please select a valid folder");
                 }
             }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            create100RandomFilesToolStripMenuItem_Click(sender, e);
+        }
+
+        private void toolStripStatusLabel3_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
