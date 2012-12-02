@@ -15,7 +15,7 @@ namespace File_System_Simulation
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Main());
+            Application.Run(new Setup());
         }
     }
 }

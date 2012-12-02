@@ -39,10 +39,6 @@
             this.button1 = new System.Windows.Forms.Button();
             this.FileName = new System.Windows.Forms.TextBox();
             this.Foldername = new System.Windows.Forms.TextBox();
-            this.button4 = new System.Windows.Forms.Button();
-            this.b_Create_Folder = new System.Windows.Forms.Button();
-            this.DeleteFiles = new System.Windows.Forms.Button();
-            this.CreateFiles = new System.Windows.Forms.Button();
             this.CurrentFolder = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
@@ -68,6 +64,13 @@
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.lFileSize = new System.Windows.Forms.Label();
+            this.button4 = new System.Windows.Forms.Button();
+            this.b_Create_Folder = new System.Windows.Forms.Button();
+            this.DeleteFiles = new System.Windows.Forms.Button();
+            this.CreateFiles = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.toolStripStatusLabel6 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.blockSize = new System.Windows.Forms.ToolStripStatusLabel();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ContentGrid)).BeginInit();
@@ -156,7 +159,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(12, 342);
+            this.button1.Location = new System.Drawing.Point(12, 377);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(121, 23);
             this.button1.TabIndex = 12;
@@ -174,68 +177,10 @@
             // 
             // Foldername
             // 
-            this.Foldername.Location = new System.Drawing.Point(14, 265);
+            this.Foldername.Location = new System.Drawing.Point(14, 300);
             this.Foldername.Name = "Foldername";
             this.Foldername.Size = new System.Drawing.Size(119, 20);
             this.Foldername.TabIndex = 16;
-            // 
-            // button4
-            // 
-            this.button4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button4.Image = global::File_System_Simulation.Properties.Resources.Folder_Delete_icon;
-            this.button4.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button4.Location = new System.Drawing.Point(11, 292);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(122, 34);
-            this.button4.TabIndex = 17;
-            this.button4.Text = "Delete folder";
-            this.button4.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
-            // 
-            // b_Create_Folder
-            // 
-            this.b_Create_Folder.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.b_Create_Folder.Image = global::File_System_Simulation.Properties.Resources.folder_close_icon;
-            this.b_Create_Folder.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.b_Create_Folder.Location = new System.Drawing.Point(12, 225);
-            this.b_Create_Folder.Name = "b_Create_Folder";
-            this.b_Create_Folder.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.b_Create_Folder.Size = new System.Drawing.Size(121, 34);
-            this.b_Create_Folder.TabIndex = 15;
-            this.b_Create_Folder.Text = "Create folder";
-            this.b_Create_Folder.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.b_Create_Folder.UseVisualStyleBackColor = true;
-            this.b_Create_Folder.Click += new System.EventHandler(this.button3_Click);
-            // 
-            // DeleteFiles
-            // 
-            this.DeleteFiles.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.DeleteFiles.Image = global::File_System_Simulation.Properties.Resources.Button_Delete_icon;
-            this.DeleteFiles.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.DeleteFiles.Location = new System.Drawing.Point(12, 185);
-            this.DeleteFiles.Name = "DeleteFiles";
-            this.DeleteFiles.Size = new System.Drawing.Size(121, 34);
-            this.DeleteFiles.TabIndex = 9;
-            this.DeleteFiles.Text = "Delete file";
-            this.DeleteFiles.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.DeleteFiles.UseVisualStyleBackColor = true;
-            this.DeleteFiles.Click += new System.EventHandler(this.DeleteFiles_Click);
-            // 
-            // CreateFiles
-            // 
-            this.CreateFiles.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CreateFiles.Image = global::File_System_Simulation.Properties.Resources.Document_icon__1_;
-            this.CreateFiles.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.CreateFiles.Location = new System.Drawing.Point(14, 96);
-            this.CreateFiles.Name = "CreateFiles";
-            this.CreateFiles.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.CreateFiles.Size = new System.Drawing.Size(119, 34);
-            this.CreateFiles.TabIndex = 2;
-            this.CreateFiles.Text = "Create file";
-            this.CreateFiles.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.CreateFiles.UseVisualStyleBackColor = true;
-            this.CreateFiles.Click += new System.EventHandler(this.CreateFiles_Click);
             // 
             // CurrentFolder
             // 
@@ -268,7 +213,9 @@
             this.toolStripStatusLabel4,
             this.diskSpace,
             this.toolStripStatusLabel5,
-            this.freedDiskSpace});
+            this.freedDiskSpace,
+            this.toolStripStatusLabel6,
+            this.blockSize});
             this.statusStrip1.Location = new System.Drawing.Point(0, 597);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(818, 22);
@@ -311,6 +258,7 @@
             this.toolStripStatusLabel3.Name = "toolStripStatusLabel3";
             this.toolStripStatusLabel3.Size = new System.Drawing.Size(122, 17);
             this.toolStripStatusLabel3.Text = "Total number of Files:";
+            this.toolStripStatusLabel3.Click += new System.EventHandler(this.toolStripStatusLabel3_Click);
             // 
             // totalfiles
             // 
@@ -373,7 +321,7 @@
             // createFileToolStripMenuItem
             // 
             this.createFileToolStripMenuItem.Name = "createFileToolStripMenuItem";
-            this.createFileToolStripMenuItem.Size = new System.Drawing.Size(198, 22);
+            this.createFileToolStripMenuItem.Size = new System.Drawing.Size(192, 22);
             this.createFileToolStripMenuItem.Text = "Create File";
             this.createFileToolStripMenuItem.Click += new System.EventHandler(this.createFileToolStripMenuItem_Click);
             // 
@@ -393,6 +341,7 @@
             this.Data});
             this.ContentGrid.Location = new System.Drawing.Point(439, 271);
             this.ContentGrid.Name = "ContentGrid";
+            this.ContentGrid.ReadOnly = true;
             this.ContentGrid.Size = new System.Drawing.Size(351, 301);
             this.ContentGrid.TabIndex = 25;
             this.ContentGrid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.ContentGrid_CellContentClick);
@@ -401,16 +350,19 @@
             // 
             this.index.HeaderText = "Index";
             this.index.Name = "index";
+            this.index.ReadOnly = true;
             // 
             // Status
             // 
             this.Status.HeaderText = "Status";
             this.Status.Name = "Status";
+            this.Status.ReadOnly = true;
             // 
             // Data
             // 
             this.Data.HeaderText = "Data";
             this.Data.Name = "Data";
+            this.Data.ReadOnly = true;
             // 
             // FileSize
             // 
@@ -450,11 +402,100 @@
             this.lFileSize.Size = new System.Drawing.Size(0, 16);
             this.lFileSize.TabIndex = 29;
             // 
-            // Form1
+            // button4
+            // 
+            this.button4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button4.Image = global::File_System_Simulation.Properties.Resources.Folder_Delete_icon;
+            this.button4.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button4.Location = new System.Drawing.Point(11, 327);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(122, 34);
+            this.button4.TabIndex = 17;
+            this.button4.Text = "Delete folder";
+            this.button4.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
+            // 
+            // b_Create_Folder
+            // 
+            this.b_Create_Folder.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.b_Create_Folder.Image = global::File_System_Simulation.Properties.Resources.folder_close_icon;
+            this.b_Create_Folder.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.b_Create_Folder.Location = new System.Drawing.Point(12, 260);
+            this.b_Create_Folder.Name = "b_Create_Folder";
+            this.b_Create_Folder.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.b_Create_Folder.Size = new System.Drawing.Size(121, 34);
+            this.b_Create_Folder.TabIndex = 15;
+            this.b_Create_Folder.Text = "Create folder";
+            this.b_Create_Folder.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.b_Create_Folder.UseVisualStyleBackColor = true;
+            this.b_Create_Folder.Click += new System.EventHandler(this.button3_Click);
+            // 
+            // DeleteFiles
+            // 
+            this.DeleteFiles.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DeleteFiles.Image = global::File_System_Simulation.Properties.Resources.Button_Delete_icon;
+            this.DeleteFiles.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.DeleteFiles.Location = new System.Drawing.Point(12, 220);
+            this.DeleteFiles.Name = "DeleteFiles";
+            this.DeleteFiles.Size = new System.Drawing.Size(121, 34);
+            this.DeleteFiles.TabIndex = 9;
+            this.DeleteFiles.Text = "Delete file";
+            this.DeleteFiles.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.DeleteFiles.UseVisualStyleBackColor = true;
+            this.DeleteFiles.Click += new System.EventHandler(this.DeleteFiles_Click);
+            // 
+            // CreateFiles
+            // 
+            this.CreateFiles.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CreateFiles.Image = global::File_System_Simulation.Properties.Resources.Document_icon__1_;
+            this.CreateFiles.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.CreateFiles.Location = new System.Drawing.Point(14, 96);
+            this.CreateFiles.Name = "CreateFiles";
+            this.CreateFiles.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.CreateFiles.Size = new System.Drawing.Size(119, 34);
+            this.CreateFiles.TabIndex = 2;
+            this.CreateFiles.Text = "Create file";
+            this.CreateFiles.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.CreateFiles.UseVisualStyleBackColor = true;
+            this.CreateFiles.Click += new System.EventHandler(this.CreateFiles_Click);
+            // 
+            // button2
+            // 
+            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button2.Location = new System.Drawing.Point(15, 185);
+            this.button2.Name = "button2";
+            this.button2.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.button2.Size = new System.Drawing.Size(119, 34);
+            this.button2.TabIndex = 30;
+            this.button2.Text = "10 random files";
+            this.button2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // toolStripStatusLabel6
+            // 
+            this.toolStripStatusLabel6.ForeColor = System.Drawing.Color.Maroon;
+            this.toolStripStatusLabel6.Name = "toolStripStatusLabel6";
+            this.toolStripStatusLabel6.Size = new System.Drawing.Size(61, 17);
+            this.toolStripStatusLabel6.Text = "block size:";
+            // 
+            // blockSize
+            // 
+            this.blockSize.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.blockSize.ForeColor = System.Drawing.Color.Red;
+            this.blockSize.Name = "blockSize";
+            this.blockSize.Size = new System.Drawing.Size(19, 17);
+            this.blockSize.Text = "to";
+            // 
+            // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(818, 619);
+            this.Controls.Add(this.button2);
             this.Controls.Add(this.lFileSize);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label7);
@@ -480,7 +521,7 @@
             this.Controls.Add(this.CreateFiles);
             this.Controls.Add(this.FileView);
             this.MainMenuStrip = this.menuStrip1;
-            this.Name = "Form1";
+            this.Name = "Main";
             this.Text = "File System Simulation";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.statusStrip1.ResumeLayout(false);
@@ -535,6 +576,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Data;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label lFileSize;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel6;
+        private System.Windows.Forms.ToolStripStatusLabel blockSize;
     }
 }
 

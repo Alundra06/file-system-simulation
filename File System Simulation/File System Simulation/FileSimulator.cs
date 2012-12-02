@@ -7,8 +7,8 @@ namespace File_System_Simulation
     {
         //Implementation of the "first-Child-Next-sibling tree
         private static  List<Node> MyNodes = new List<Node>();
-        private static int diskSize = 1000;
-        private static int diskBlock = 10;
+        private static int diskSize = Setup.DiskSize;
+        private static int diskBlock = Setup.DiskBlock;
        // private static  List<DiskBlocks> myDisk = new List<DiskBlocks>(diskSize/diskBlock);
         private static DiskBlocks myDisk = new DiskBlocks(diskSize, diskBlock);
         //The root node
@@ -38,9 +38,13 @@ namespace File_System_Simulation
         {
             return MyNodes.Count;
         }
+        public int get_blockSize()
+        {
+            return diskBlock;
+        }
         public void preorder_Traversal(Node root)
         {
-            //this.root = root;
+            root = this.root ;
             if (root != null)
             {
                 traversal += root.Element.get_Name() + "-";
@@ -192,6 +196,12 @@ namespace File_System_Simulation
             }
 
             return index;
+        }
+        public Node get_Index(Node myNode,String name)
+        {
+            
+
+            return myNode;
         }
         public int getFoldersNumber()
         {
